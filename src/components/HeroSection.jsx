@@ -44,7 +44,7 @@ function HeroSection() {
       </header>
 
       <div className="absolute inset-0 flex items-center justify-center z-10 translate-y-[-10%]">
-        <h2 className="font-[Timetwist] text-[40px] sm:text-[70px] md:text-[120px] lg:text-[130px] xl:text-[150px] font-black tracking-[-0.02em] text-black leading-none select-none">
+        <h2 className="font-[Timetwist] text-[45px] sm:text-[70px] md:text-[120px] lg:text-[130px] xl:text-[150px] font-black tracking-[-0.02em] text-black leading-none select-none">
           PORTFOLIO
         </h2>
       </div>
@@ -54,7 +54,7 @@ function HeroSection() {
           {portfolioItems.map((item) => (
             <div
               key={item.id}
-              className="portfolio-card relative w-12 sm:w-16 md:w-32 lg:w-40 xl:w-44 aspect-[3/4] rounded-md sm:rounded-lg overflow-hidden shadow-2xl cursor-pointer"
+              className="portfolio-card relative w-16 sm:w-16 md:w-32 lg:w-40 xl:w-44 aspect-[5/7] overflow-hidden shadow-gray-950 shadow-2xl cursor-pointer"
               style={{ 
                 transform: `rotate(${item.rotate}deg)`,
               }}
