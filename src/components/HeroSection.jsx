@@ -1,32 +1,32 @@
 const portfolioItems = [
   { 
     id: 1, 
-    image: '../../public/img/01.png',
+    image: '/img/01.png',
     rotate: -6
   },
   { 
     id: 2, 
-      image: '../../public/img/02.png',
+    image: '/img/02.png',
     rotate: -2
   },
   { 
     id: 3, 
-    image: '../../public/img/03.png',
+    image: '/img/03.png',
     rotate: 3
   },
   { 
     id: 4, 
-    image: '../../public/img/04.png',
+    image: '/img/04.png',
     rotate: -1
   },
   { 
     id: 5, 
-    image: '../../public/img/05.png',
+    image: '/img/05.png',
     rotate: 2
   },
   { 
     id: 6, 
-    image: '../../public/img/06.png',
+    image: '/img/06.png',
     rotate: 5
   },
 ]
