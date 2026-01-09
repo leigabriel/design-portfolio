@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Anton&display=swap');
 @import "tailwindcss";
+@import "./styles/responsive.css";
 
 * {
   margin: 0;
@@ -22,8 +23,10 @@ body {
 :root {
   --bg-light: #f2f2f2;
   --bg-dark: #212631;
-  --text-light: #000000;
-  --text-dark: #ffffff;
+  --bg-neon: #212631;
+  --text-light: #212631;
+  --text-dark: #f2f2f2;
+  --text-neon: #ff0000;
 }
 
 [data-theme="light"] {
@@ -34,6 +37,11 @@ body {
 [data-theme="dark"] {
   background-color: var(--bg-dark);
   color: var(--text-dark);
+}
+
+[data-theme="neon"] {
+  background-color: var(--bg-neon);
+  color: var(--text-neon);
 }
 
 .portfolio-text {
