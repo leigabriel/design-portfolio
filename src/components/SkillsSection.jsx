@@ -17,13 +17,13 @@ function SkillsSection() {
 
   return (
     <section id="skills" className={'relative min-h-[50vh] overflow-hidden ' + (isDarkMode ? 'bg-[#212631]' : 'bg-[#f2f2f2]')}>
-      <div style={{ padding: '4rem 5rem' }}>
-        <h2 ref={titleRef} className={'section-title mb-12 ' + textColor}>[.SKILLS]</h2>
-        <div ref={skillsRef} className="grid grid-cols-3 gap-16">
+      <div className="section-padding">
+        <h2 ref={titleRef} className={'section-title mb-8 md:mb-12 ' + textColor}>[.SKILLS]</h2>
+        <div ref={skillsRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
           {skillsData.map((skill) => (
             <div key={skill.category} className="skill-item">
-              <h3 className={'content-title font-[Timetwist] mb-6 ' + textColor}>{skill.category}</h3>
-              <ul className="space-y-3">
+              <h3 className={'content-title font-[Timetwist] mb-4 md:mb-6 ' + textColor}>{skill.category}</h3>
+              <ul className="space-y-2 md:space-y-3">
                 {skill.items.map((item) => (
                   <li key={item} className={'skill-item-text cursor-default ' + textMuted}>{item}</li>
                 ))}

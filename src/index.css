@@ -25,10 +25,7 @@
 html {
   scroll-behavior: smooth;
   scroll-snap-type: y proximity;
-}
-
-section {
-  scroll-snap-align: start;
+  overflow-x: hidden;
 }
 
 body {
@@ -37,6 +34,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+section {
+  scroll-snap-align: start;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 :root {
@@ -105,129 +110,327 @@ body {
   background-color: rgba(127, 179, 213, 0.5);
 }
 
+/* Base mobile-first typography */
 .section-title {
   font-family: "Timetwist", sans-serif;
-  font-size: 3.75rem;
+  font-size: 2rem;
   font-weight: 700;
   letter-spacing: -0.025em;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .section-footer-text {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .header-text {
-  font-size: 0.875rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
 .intro-text {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  text-align: justify;
-  line-height: 1.625;
+  letter-spacing: 0.1em;
+  text-align: left;
+  line-height: 1.75;
 }
 
 .content-title {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .content-number {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-weight: 700;
 }
 
 .content-subtitle {
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
 
 .skill-item-text {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 500;
 }
 
 .contact-label {
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   margin-bottom: 0.5rem;
 }
 
 .contact-value {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-weight: 600;
+  word-break: break-word;
 }
 
 .contact-icon {
-  font-size: 2.5rem;
+  font-size: 1.75rem;
 }
 
 .portfolio-title {
   font-family: "Timetwist", sans-serif;
-  font-size: 140px;
+  font-size: clamp(2.5rem, 10vw, 140px);
   font-weight: 900;
   letter-spacing: -0.02em;
   line-height: 1;
   user-select: none;
+  white-space: nowrap;
 }
 
 .portfolio-card-size {
-  width: 10rem;
+  width: 4rem;
 }
 
 .card-gap {
-  gap: 0.75rem;
+  gap: 0.35rem;
+}
+
+/* Tablet breakpoint (md: 768px) */
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 2.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .section-footer-text {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+  }
+
+  .header-text {
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+  }
+
+  .intro-text {
+    font-size: 1.125rem;
+    letter-spacing: 0.12em;
+    text-align: justify;
+    line-height: 1.7;
+  }
+
+  .content-title {
+    font-size: 1.25rem;
+  }
+
+  .content-number {
+    font-size: 1.25rem;
+  }
+
+  .skill-item-text {
+    font-size: 1.0625rem;
+  }
+
+  .contact-label {
+    font-size: 0.9375rem;
+    letter-spacing: 0.12em;
+  }
+
+  .contact-value {
+    font-size: 1.25rem;
+  }
+
+  .contact-icon {
+    font-size: 2rem;
+  }
+
+  .portfolio-card-size {
+    width: 7rem;
+  }
+
+  .card-gap {
+    gap: 0.5rem;
+  }
+}
+
+/* Desktop breakpoint (lg: 1024px) */
+@media (min-width: 1024px) {
+  .section-title {
+    font-size: 3.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-footer-text {
+    font-size: 0.875rem;
+    letter-spacing: 0.15em;
+  }
+
+  .header-text {
+    font-size: 0.875rem;
+    letter-spacing: 0.2em;
+  }
+
+  .intro-text {
+    font-size: 1.25rem;
+    letter-spacing: 0.15em;
+    line-height: 1.625;
+  }
+
+  .content-title {
+    font-size: 1.5rem;
+  }
+
+  .content-number {
+    font-size: 1.5rem;
+  }
+
+  .content-subtitle {
+    font-size: 1rem;
+  }
+
+  .skill-item-text {
+    font-size: 1.125rem;
+  }
+
+  .contact-label {
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+  }
+
+  .contact-value {
+    font-size: 1.5rem;
+  }
+
+  .contact-icon {
+    font-size: 2.5rem;
+  }
+
+  .portfolio-card-size {
+    width: 10rem;
+  }
+
+  .card-gap {
+    gap: 0.75rem;
+  }
 }
 
 .content-spacing {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 1.5rem;
 }
 
 .grid-gap {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem;
-  column-gap: 6rem;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
 }
 
 .stat-label {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   margin-bottom: 0.25rem;
 }
 
 .stat-value {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 
 .avatar-size {
-  width: 24rem;
-  height: 24rem;
+  width: 12rem;
+  height: 12rem;
 }
 
 .rotating-star {
-  font-size: 4.5rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  margin-right: -15px;
+  margin-right: -10px;
   z-index: 10;
+}
+
+/* Responsive section padding utility */
+.section-padding {
+  padding: 2rem 1.25rem;
+}
+
+/* Tablet breakpoint for additional utilities */
+@media (min-width: 768px) {
+  .content-spacing {
+    gap: 2rem;
+  }
+
+  .grid-gap {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    column-gap: 4rem;
+  }
+
+  .stat-label {
+    font-size: 0.8125rem;
+    letter-spacing: 0.12em;
+  }
+
+  .stat-value {
+    font-size: 1.0625rem;
+  }
+
+  .avatar-size {
+    width: 18rem;
+    height: 18rem;
+  }
+
+  .rotating-star {
+    font-size: 3.5rem;
+    margin-right: -12px;
+  }
+
+  .section-padding {
+    padding: 3rem 3rem;
+  }
+}
+
+/* Desktop breakpoint for additional utilities */
+@media (min-width: 1024px) {
+  .content-spacing {
+    gap: 2.5rem;
+  }
+
+  .grid-gap {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    column-gap: 6rem;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    letter-spacing: 0.15em;
+  }
+
+  .stat-value {
+    font-size: 1.125rem;
+  }
+
+  .avatar-size {
+    width: 24rem;
+    height: 24rem;
+  }
+
+  .rotating-star {
+    font-size: 4.5rem;
+    margin-right: -15px;
+  }
+
+  .section-padding {
+    padding: 4rem 5rem;
+  }
 }

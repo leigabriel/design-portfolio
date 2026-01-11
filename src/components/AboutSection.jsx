@@ -34,12 +34,12 @@ function AboutSection() {
 
   return (
     <section className={'relative min-h-screen overflow-hidden ' + (isDarkMode ? 'bg-[#212631]' : 'bg-[#f2f2f2]')}>
-      <div style={{ padding: '4rem 5rem' }} className="flex flex-col justify-between min-h-screen">
+      <div className="section-padding flex flex-col justify-between min-h-screen">
         <h2 ref={titleRef} className={'section-title ' + textColor}>[.ABOUT ME]</h2>
-        <p ref={introRef} className={'intro-text mb-10 ' + textBody}>
+        <p ref={introRef} className={'intro-text mb-6 md:mb-10 ' + textBody}>
           I'M A <span className="text-[#E8C547]">GRAPHIC DESIGNER, UI DESIGNER, AND FRONTEND DEVELOPER</span> WHO COMBINES CREATIVITY AND TECHNOLOGY TO CREATE CLEAN, MODERN, AND FUNCTIONAL DIGITAL EXPERIENCES.
         </p>
-        <div ref={imageContainerRef} className="flex items-center justify-center mb-10">
+        <div ref={imageContainerRef} className="flex items-center justify-center mb-6 md:mb-10">
           <div className="relative flex items-center">
             <div className={'rotating-star ' + textColor} style={{ transform: 'rotate(' + rotation + 'deg)' }}>*</div>
             <div className="relative avatar-size overflow-hidden group">
@@ -47,7 +47,7 @@ function AboutSection() {
             </div>
           </div>
         </div>
-        <div ref={statsRef} className="grid grid-cols-3 gap-6 mb-8">
+        <div ref={statsRef} className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
           {designFocus.map((item) => (
             <div key={item.label} className="stat-item opacity-0">
               <span className={'stat-label block ' + textMuted}>{item.label}</span>
