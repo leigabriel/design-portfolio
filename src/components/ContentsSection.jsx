@@ -2,24 +2,23 @@ import { useTheme } from '../context/ThemeContext'
 import { useScrollAnimation, useStaggerAnimation } from '../hooks/useScrollAnimation'
 
 const contentsData = [
-  { number: '01', title: 'Poster Design' },
-  { number: '02', title: 'Graphic Design' },
-  { number: '03', title: 'Web Projects' },
-  { number: '04', title: 'Photography' },
-  { number: '05', title: 'Typography' },
-  { number: '06', title: 'UI/UX Design' }
+  { number: '01', title: 'Poster', status: 'View Below' },
+  { number: '02', title: 'Web Projects', status: 'Available Soon' },
+  { number: '03', title: 'Photography', status: 'Available Soon' },
+  { number: '04', title: 'UI/UX Design', status: 'Available Soon' }
 ]
 
 function ContentsSection() {
-  const { isDarkMode, isNeonMode } = useTheme()
+  const { isDarkMode } = useTheme()
   const titleRef = useScrollAnimation({ animation: 'bounceIn', delay: 0 })
   const contentRef = useStaggerAnimation({ selector: '.content-item', animation: 'flipUp', stagger: 80, delay: 200 })
 
-  const textColor = isNeonMode ? 'text-[#ff0000]' : isDarkMode ? 'text-white' : 'text-black'
-  const textMuted = isNeonMode ? 'text-[#ff0000]/40' : isDarkMode ? 'text-white/40' : 'text-black/40'
-  const footerText = isNeonMode ? 'text-[#ff0000]/60' : isDarkMode ? 'text-white/60' : 'text-black/80'
+  const textColor = isDarkMode ? 'text-white' : 'text-black'
+  const textMuted = isDarkMode ? 'text-white/40' : 'text-black/40'
+  const textAccent = 'text-[#7FB3D5]'
+  const footerText = isDarkMode ? 'text-white/60' : 'text-black/80'
 
-  const [leftColumn, rightColumn] = [contentsData.slice(0, 3), contentsData.slice(3, 6)]
+  const [leftColumn, rightColumn] = [contentsData.slice(0, 2), contentsData.slice(2, 4)]
 
   return (
     <section id="contents" className={`relative min-h-screen overflow-hidden transition-colors duration-500 ${isDarkMode ? 'bg-[#212631]' : 'bg-[#f2f2f2]'}`}>
@@ -36,7 +35,7 @@ function ContentsSection() {
                       <span className={`content-number transition-colors duration-500 ${textColor}`}>{item.number}.</span>
                       <h3 className={`content-title transition-colors duration-500 ${textColor}`}>{item.title}</h3>
                     </div>
-                    <span className={`content-subtitle block ml-9 sm:ml-11 mt-2 transition-colors duration-500 ${textMuted}`}>Available Soon</span>
+                    <span className={`content-subtitle block ml-9 sm:ml-11 mt-2 transition-colors duration-500 ${item.status === 'View Below' ? textAccent : textMuted}`}>{item.status}</span>
                   </div>
                 ))}
               </div>

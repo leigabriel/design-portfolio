@@ -9,14 +9,14 @@ const socialLinks = [
 ]
 
 function ContactSection() {
-  const { isDarkMode, isNeonMode } = useTheme()
+  const { isDarkMode } = useTheme()
   const titleRef = useScrollAnimation({ animation: 'fadeLeft', delay: 0 })
   const contactRef = useStaggerAnimation({ selector: '.contact-item', animation: 'rotateIn', stagger: 120, delay: 200 })
 
-  const textColor = isNeonMode ? 'text-[#ff0000]' : isDarkMode ? 'text-white' : 'text-black'
-  const textMuted = isNeonMode ? 'text-[#ff0000]/50' : isDarkMode ? 'text-white/50' : 'text-black/50'
-  const footerText = isNeonMode ? 'text-[#ff0000]/60' : isDarkMode ? 'text-white/60' : 'text-black/80'
-  const iconMuted = isNeonMode ? 'text-[#ff0000]/60 group-hover:text-[#ff0000]' : isDarkMode ? 'text-white/60 group-hover:text-[#7FB3D5]' : 'text-black/50 group-hover:text-[#7FB3D5]'
+  const textColor = isDarkMode ? 'text-white' : 'text-black'
+  const textMuted = isDarkMode ? 'text-white/50' : 'text-black/50'
+  const footerText = isDarkMode ? 'text-white/60' : 'text-black/80'
+  const iconMuted = isDarkMode ? 'text-white/60 group-hover:text-[#7FB3D5]' : 'text-black/50 group-hover:text-[#7FB3D5]'
 
   return (
     <section id="contact" className={`relative min-h-[70vh] overflow-hidden transition-colors duration-500 ${isDarkMode ? 'bg-[#212631]' : 'bg-[#f2f2f2]'}`}>
@@ -42,7 +42,7 @@ function ContactSection() {
             ))}
           </div>
 
-          <div className="mt-14 sm:mt-18">
+          <div className="mt-14 sm:mt-16">
             <p className={`intro-text transition-colors duration-500 ${textMuted}`}>Open for freelance projects and collaborations</p>
           </div>
         </div>

@@ -5,16 +5,16 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 function AboutSection() {
   const [rotation, setRotation] = useState(0)
-  const { isDarkMode, isNeonMode } = useTheme()
+  const { isDarkMode } = useTheme()
   const titleRef = useScrollAnimation({ animation: 'slideUp', delay: 0 })
   const introRef = useScrollAnimation({ animation: 'fadeLeft', delay: 150 })
   const imageContainerRef = useScrollAnimation({ animation: 'elasticScale', delay: 200 })
   const descRef = useScrollAnimation({ animation: 'fadeRight', delay: 300 })
   const statsRef = useRef(null)
 
-  const textColor = isNeonMode ? 'text-[#ff0000]' : isDarkMode ? 'text-white' : 'text-black'
-  const textMuted = isNeonMode ? 'text-[#ff0000]/50' : isDarkMode ? 'text-white/50' : 'text-black/50'
-  const textBody = isNeonMode ? 'text-[#ff0000]/90' : isDarkMode ? 'text-white/90' : 'text-black'
+  const textColor = isDarkMode ? 'text-white' : 'text-black'
+  const textMuted = isDarkMode ? 'text-white/50' : 'text-black/50'
+  const textBody = isDarkMode ? 'text-white/90' : 'text-black'
 
   useEffect(() => { const i = setInterval(() => setRotation(p => (p + 1) % 360), 20); return () => clearInterval(i) }, [])
 

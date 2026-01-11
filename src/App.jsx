@@ -4,6 +4,10 @@ import HeroSection from './components/HeroSection'
 import AboutSection from './components/AboutSection'
 import SkillsSection from './components/SkillsSection'
 import ContentsSection from './components/ContentsSection'
+
+import PosterTitleSection from './components/PosterTitleSection'
+import PostersSection from './components/PostersSection'
+
 import ContactSection from './components/ContactSection'
 
 function AppContent() {
@@ -11,15 +15,15 @@ function AppContent() {
   useSecurityProtection()
 
   return (
-    <main 
-      className={`min-h-screen transition-colors duration-500 ${
-        isDarkMode ? 'bg-[#212631]' : 'bg-[#f2f2f2]'
-      }`}
-    >
+    <main className={`min-h-screen transition-colors duration-500 ${isDarkMode ? 'bg-[#212631]' : 'bg-[#f2f2f2]'}`}>
       <HeroSection />
       <AboutSection />
       <SkillsSection />
       <ContentsSection />
+
+      <PosterTitleSection />
+      <PostersSection />
+
       <ContactSection />
     </main>
   )

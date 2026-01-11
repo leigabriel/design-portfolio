@@ -14,47 +14,111 @@ const skillsData = [
 ]
 
 function SkillsSection() {
-  const { isDarkMode, isNeonMode } = useTheme()
+  const { isDarkMode } = useTheme()
   const titleRef = useScrollAnimation({ animation: 'rotateIn', delay: 0 })
   const skillsRef = useStaggerAnimation({ selector: '.skill-item', animation: 'slideIn', stagger: 120, delay: 200 })
   const imageRef = useScrollAnimation({ animation: 'scaleUp', delay: 300 })
+  const quoteRef = useScrollAnimation({ animation: 'fadeUp', delay: 400 })
 
-  const textColor = isNeonMode ? 'text-[#ff0000]' : isDarkMode ? 'text-white' : 'text-black'
-  const textMuted = isNeonMode ? 'text-[#ff0000]/80' : isDarkMode ? 'text-white/80' : 'text-black/80'
+  const textColor = isDarkMode ? 'text-white' : 'text-black'
+  const textMuted = isDarkMode ? 'text-white/80' : 'text-black/80'
   const bgMuted = isDarkMode ? 'bg-white/10' : 'bg-black/10'
-  const shadowColor = isNeonMode ? 'rgba(255, 0, 0, 0.3)' : isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.25)'
+  const shadowColor = isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.25)'
 
   return (
-    <section id="skills" className={`relative min-h-[auto] md:min-h-screen overflow-hidden transition-colors duration-500 ${isDarkMode ? 'bg-[#212631]' : 'bg-[#f2f2f2]'}`}>
-      <div className="section-padding !relative py-8 md:py-0 md:!absolute flex flex-col justify-between">
-        <h2 ref={titleRef} className={`section-title transition-colors duration-500 ${textColor}`}>[.SKILLS]</h2>
-
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 items-center">
-          <div ref={skillsRef} className="space-y-4 sm:space-y-6">
+    <section id="skills" className={`relative overflow-hidden transition-colors duration-500 ${isDarkMode ? 'bg-[#212631]' : 'bg-[#f2f2f2]'}`}>
+      <div className="section-padding !relative py-8 md:py-12">
+        {/* Mobile Layout */}
+        <div className="block md:hidden">
+          <h2 ref={titleRef} className={`section-title transition-colors duration-500 mb-8 ${textColor}`}>[.SKILLS]</h2>
+          
+          <div ref={skillsRef} className="space-y-8 mt-6">
             {skillsData.map((skill) => (
               <div key={skill.category} className="skill-item">
-                <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                <div className="flex items-center gap-3 mb-3">
                   <div className={`skill-icon-wrapper transition-colors duration-300 ${bgMuted}`}>
                     <img src={skill.icon} alt="" className={`w-full h-full ${isDarkMode ? 'invert' : ''}`} draggable="false" />
                   </div>
                   <h3 className={`content-title font-[Timetwist] transition-colors duration-500 ${textColor}`}>{skill.category}</h3>
                 </div>
-                <ul className="space-y-0.5 sm:space-y-1 ml-9 sm:ml-[52px]">
+                <ul className="space-y-2 ml-12">
                   {skill.items.map((item) => (<li key={item} className={`skill-item-text transition-all duration-300 hover:translate-x-2 cursor-default ${textMuted}`}>{item}</li>))}
                 </ul>
               </div>
             ))}
           </div>
 
-          <div ref={imageRef} className="hidden md:flex justify-center items-center">
-            <div className="w-full max-w-[350px] lg:max-w-[450px] aspect-[5/7] overflow-hidden" style={{ boxShadow: `0 25px 50px ${shadowColor}` }}>
-              <img src="/img/01.png" alt="Poster Design" className="w-full h-full object-fill" draggable="false" />
-            </div>
+          <div ref={quoteRef} className={`mt-10 intro-text transition-colors duration-500 ${textMuted}`}>
+            "Design is not just what it looks like and feels like. Design is how it works."
+          </div>
+
+          <div className="flex justify-between items-end mt-8">
+            <span className={`section-footer-text transition-colors duration-500 ${isDarkMode ? 'text-white/60' : 'text-black/60'}`}>Skills & Expertise 2026</span>
           </div>
         </div>
 
-        <div className="flex justify-between items-end mt-4 md:mt-6">
-          <span className={`section-footer-text transition-colors duration-500 ${isNeonMode ? 'text-[#ff0000]/60' : isDarkMode ? 'text-white/60' : 'text-black/60'}`}>Skills & Expertise 2026</span>
+        {/* Desktop Layout - 5x5 Grid */}
+        <div className="hidden md:grid grid-cols-5 grid-rows-5 gap-4">
+          {/* Div 1 - Title */}
+          <div className="col-span-3">
+            <h2 ref={titleRef} className={`section-title transition-colors duration-500 ${textColor}`}>[.SKILLS]</h2>
+          </div>
+
+          {/* Div 2 - Software */}
+          <div ref={skillsRef} className="row-span-2 col-start-1 row-start-2 skill-item">
+            <div className="flex items-center gap-3 mb-3">
+              <div className={`skill-icon-wrapper transition-colors duration-300 ${bgMuted}`}>
+                <img src={icons.software} alt="" className={`w-full h-full ${isDarkMode ? 'invert' : ''}`} draggable="false" />
+              </div>
+              <h3 className={`content-title font-[Timetwist] transition-colors duration-500 ${textColor}`}>Software</h3>
+            </div>
+            <ul className="space-y-1 ml-12">
+              {skillsData[0].items.map((item) => (<li key={item} className={`skill-item-text transition-all duration-300 hover:translate-x-2 cursor-default ${textMuted}`}>{item}</li>))}
+            </ul>
+          </div>
+
+          {/* Div 3 - Core Skills */}
+          <div className="row-span-2 col-start-2 row-start-2 skill-item">
+            <div className="flex items-center gap-3 mb-3">
+              <div className={`skill-icon-wrapper transition-colors duration-300 ${bgMuted}`}>
+                <img src={icons.core} alt="" className={`w-full h-full ${isDarkMode ? 'invert' : ''}`} draggable="false" />
+              </div>
+              <h3 className={`content-title font-[Timetwist] transition-colors duration-500 ${textColor}`}>Core Skills</h3>
+            </div>
+            <ul className="space-y-1 ml-12">
+              {skillsData[1].items.map((item) => (<li key={item} className={`skill-item-text transition-all duration-300 hover:translate-x-2 cursor-default ${textMuted}`}>{item}</li>))}
+            </ul>
+          </div>
+
+          {/* Div 4 - Languages */}
+          <div className="row-span-2 col-start-3 row-start-2 skill-item">
+            <div className="flex items-center gap-3 mb-3">
+              <div className={`skill-icon-wrapper transition-colors duration-300 ${bgMuted}`}>
+                <img src={icons.languages} alt="" className={`w-full h-full ${isDarkMode ? 'invert' : ''}`} draggable="false" />
+              </div>
+              <h3 className={`content-title font-[Timetwist] transition-colors duration-500 ${textColor}`}>Languages</h3>
+            </div>
+            <ul className="space-y-1 ml-12">
+              {skillsData[2].items.map((item) => (<li key={item} className={`skill-item-text transition-all duration-300 hover:translate-x-2 cursor-default ${textMuted}`}>{item}</li>))}
+            </ul>
+          </div>
+
+          {/* Div 5 - Poster Image */}
+          <div ref={imageRef} className="col-span-2 row-span-5 col-start-4 row-start-1 flex justify-center items-center">
+            <div className="w-full max-w-[400px] aspect-[5/7] overflow-hidden" style={{ boxShadow: `0 25px 50px ${shadowColor}` }}>
+              <img src="/img/01.png" alt="Poster Design" className="w-full h-full object-fill" draggable="false" />
+            </div>
+          </div>
+
+          {/* Div 6 - Quote */}
+          <div ref={quoteRef} className="col-span-3 row-span-2 row-start-4 flex flex-col justify-start pt-4">
+            <p className={`intro-text transition-colors duration-500 ${textMuted}`}>
+              "Design is not just what it looks like and feels like. Design is how it works."
+            </p>
+            <div className="flex justify-between items-end mt-6">
+              <span className={`section-footer-text transition-colors duration-500 ${isDarkMode ? 'text-white/60' : 'text-black/60'}`}>Skills & Expertise 2026</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

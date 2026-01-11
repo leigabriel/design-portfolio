@@ -58,22 +58,44 @@ function PortfolioCard({ item, index, onSelect, shadowColor }) {
 }
 
 function HeroSection() {
-  const { isDarkMode, isNeonMode, theme, cycleTheme } = useTheme()
+  const { isDarkMode, toggleTheme } = useTheme()
   const [selectedItem, setSelectedItem] = useState(null)
   const titleRef = useRef(null)
   const headerRef = useRef(null)
   const footerRef = useRef(null)
 
-  const textColor = isNeonMode ? 'text-[#ff0000]' : isDarkMode ? 'text-white' : 'text-black'
-  const shadowColor = isNeonMode ? 'rgba(255, 0, 0, 0.3)' : isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.25)'
+  const textColor = isDarkMode ? 'text-white' : 'text-black'
+  const shadowColor = isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.25)'
 
   useEffect(() => {
-    if (titleRef.current) anime({ targets: titleRef.current, opacity: [0, 1], scale: [0.9, 1], duration: 1000, easing: 'easeOutExpo' })
+    // Animate portfolio title with character split effect
+    if (titleRef.current) {
+      const text = titleRef.current.textContent || ''
+      titleRef.current.innerHTML = text.split('').map(char => 
+        char === ' ' ? ' ' : `<span style="display:inline-block">${char}</span>`
+      ).join('')
+      titleRef.current.style.opacity = '1'
+      
+      const chars = titleRef.current.querySelectorAll('span')
+      anime({
+        targets: chars,
+        translateY: [
+          { value: -44, duration: 600, easing: 'easeOutExpo' },
+          { value: 0, duration: 800, easing: 'easeOutBounce', delay: 100 }
+        ],
+        rotate: {
+          value: ['-1turn', 0],
+          duration: 1400,
+          easing: 'easeInOutCirc'
+        },
+        delay: anime.stagger(50),
+        loop: true,
+        loopDelay: 1000
+      })
+    }
     if (headerRef.current) anime({ targets: headerRef.current.children, opacity: [0, 1], translateY: [-20, 0], delay: anime.stagger(100, { start: 600 }), duration: 600, easing: 'easeOutExpo' })
     if (footerRef.current) anime({ targets: footerRef.current.children, opacity: [0, 1], translateY: [20, 0], delay: anime.stagger(100, { start: 800 }), duration: 600, easing: 'easeOutExpo' })
   }, [])
-
-  const themeLabels = { light: 'Dark', dark: 'Red', neon: 'Light' }
 
   return (
     <section className={`relative h-screen overflow-visible transition-colors duration-500 ${isDarkMode ? 'bg-[#212631]' : 'bg-[#f2f2f2]'}`}>
@@ -83,12 +105,12 @@ function HeroSection() {
         <h1 className={`header-text opacity-0 transition-colors duration-500 ${textColor}`}>Lei Gabriel</h1>
         <span className={`header-text text-right opacity-0 transition-colors duration-500 ${textColor}`}>
           Design.Portfolio <br />
-          <button onClick={cycleTheme} className="hover:underline cursor-pointer">[.{themeLabels[theme]} Mode]</button>
+          <button onClick={toggleTheme} className="hover:underline cursor-pointer">[.{isDarkMode ? 'Light' : 'Dark'} Mode]</button>
         </span>
       </header>
 
       <div className="absolute inset-0 flex items-center justify-center z-10 translate-y-[-10%]">
-        <h2 ref={titleRef} className={`portfolio-title opacity-0 transition-colors duration-500 ${textColor}`}>[.PORTFOLIO]</h2>
+        <h2 ref={titleRef} className={`portfolio-title opacity-0 transition-colors duration-500 ${textColor}`} style={{ willChange: 'transform' }}>[.PORTFOLIO]</h2>
       </div>
 
       <div className="absolute inset-0 flex items-center justify-center z-20">

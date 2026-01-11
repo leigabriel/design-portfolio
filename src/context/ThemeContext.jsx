@@ -4,8 +4,7 @@ const ThemeContext = createContext()
 
 const themes = {
   light: { bg: '#f2f2f2', text: '#212631', name: 'light' },
-  dark: { bg: '#212631', text: '#f2f2f2', name: 'dark' },
-  neon: { bg: '#212631', text: '#ff0000', name: 'neon' }
+  dark: { bg: '#212631', text: '#f2f2f2', name: 'dark' }
 }
 
 export function ThemeProvider({ children }) {
@@ -13,9 +12,10 @@ export function ThemeProvider({ children }) {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('theme')
       if (saved && themes[saved]) return saved
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      // Default to dark theme
+      return 'dark'
     }
-    return 'light'
+    return 'dark'
   })
 
   useEffect(() => {
@@ -23,18 +23,13 @@ export function ThemeProvider({ children }) {
     document.documentElement.setAttribute('data-theme', theme)
   }, [theme])
 
-  const cycleTheme = () => {
-    const order = ['light', 'dark', 'neon']
-    const currentIndex = order.indexOf(theme)
-    setTheme(order[(currentIndex + 1) % order.length])
-  }
+  const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light')
 
-  const isDarkMode = theme === 'dark' || theme === 'neon'
-  const isNeonMode = theme === 'neon'
+  const isDarkMode = theme === 'dark'
   const currentTheme = themes[theme]
 
   return (
-    <ThemeContext.Provider value={{ isDarkMode, isNeonMode, theme, currentTheme, cycleTheme }}>
+    <ThemeContext.Provider value={{ isDarkMode, theme, currentTheme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   )
