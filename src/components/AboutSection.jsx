@@ -29,37 +29,33 @@ function AboutSection() {
   const designFocus = [
     { label: 'Design Philosophy', value: 'Clean, Minimal, Purposeful' },
     { label: 'Approach', value: 'User-First, Detail-Oriented' },
-    { label: 'Workflow', value: 'Research → Design → Iterate → Deliver' }
+    { label: 'Workflow', value: 'Research > Design > Iterate > Deliver' }
   ]
 
   return (
-    <section className={`relative min-h-screen overflow-hidden transition-colors duration-500 ${isDarkMode ? 'bg-[#212631]' : 'bg-[#f2f2f2]'}`}>
-      <div className="section-padding flex flex-col justify-between">
-        <h2 ref={titleRef} className={`section-title transition-colors duration-500 ${textColor}`}>[.ABOUT ME]</h2>
-
-        <p ref={introRef} className={`intro-text mb-6 sm:mb-8 md:mb-10 transition-colors duration-500 ${textBody}`}>
+    <section className={'relative min-h-screen overflow-hidden ' + (isDarkMode ? 'bg-[#212631]' : 'bg-[#f2f2f2]')}>
+      <div style={{ padding: '4rem 5rem' }} className="flex flex-col justify-between min-h-screen">
+        <h2 ref={titleRef} className={'section-title ' + textColor}>[.ABOUT ME]</h2>
+        <p ref={introRef} className={'intro-text mb-10 ' + textBody}>
           I'M A <span className="text-[#E8C547]">GRAPHIC DESIGNER, UI DESIGNER, AND FRONTEND DEVELOPER</span> WHO COMBINES CREATIVITY AND TECHNOLOGY TO CREATE CLEAN, MODERN, AND FUNCTIONAL DIGITAL EXPERIENCES.
         </p>
-
-        <div ref={imageContainerRef} className="flex items-center justify-center mb-6 sm:mb-8 md:mb-10">
+        <div ref={imageContainerRef} className="flex items-center justify-center mb-10">
           <div className="relative flex items-center">
-            <div className={`rotating-star transition-colors duration-500 ${textColor}`} style={{ transform: `rotate(${rotation}deg)` }}>✳</div>
+            <div className={'rotating-star ' + textColor} style={{ transform: 'rotate(' + rotation + 'deg)' }}>*</div>
             <div className="relative avatar-size overflow-hidden group">
-              <img src="https://avatars.githubusercontent.com/u/223958636?v=4" alt="Lei Gabriel" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" draggable="false" />
+              <img src="https://avatars.githubusercontent.com/u/223958636?v=4" alt="Lei Gabriel" className="w-full h-full object-cover" draggable="false" />
             </div>
           </div>
         </div>
-
-        <div ref={statsRef} className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+        <div ref={statsRef} className="grid grid-cols-3 gap-6 mb-8">
           {designFocus.map((item) => (
             <div key={item.label} className="stat-item opacity-0">
-              <span className={`stat-label block transition-colors duration-500 ${textMuted}`}>{item.label}</span>
-              <span className={`stat-value block transition-colors duration-500 ${textColor}`}>{item.value}</span>
+              <span className={'stat-label block ' + textMuted}>{item.label}</span>
+              <span className={'stat-value block ' + textColor}>{item.value}</span>
             </div>
           ))}
         </div>
-
-        <p ref={descRef} className={`intro-text transition-colors duration-500 ${textBody}`}>
+        <p ref={descRef} className={'intro-text ' + textBody}>
           I FOCUS ON CRAFTING <span className="text-[#7FB3D5]">USER-CENTERED DESIGNS</span> THAT ARE BOTH VISUALLY APPEALING AND EASY TO NAVIGATE. MY GOAL IS TO BUILD DIGITAL PRODUCTS THAT NOT ONLY LOOK GOOD BUT ALSO DELIVER A <span className="text-[#F5A6A6]">SMOOTH AND MEANINGFUL EXPERIENCE</span> FOR USERS.
         </p>
       </div>

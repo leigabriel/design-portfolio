@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useTheme } from '../context/ThemeContext'
-import { useScrollAnimation, useStaggerAnimation } from '../hooks/useScrollAnimation'
+import { useStaggerAnimation } from '../hooks/useScrollAnimation'
 
 const postersData = [
   { id: 1, src: '/img/posters/01-multo.png', alt: 'Multo Poster' },
@@ -18,8 +18,8 @@ const postersData = [
 function ImagePopup({ poster, onClose, shadowColor }) {
   return createPortal(
     <div className="fixed inset-0 flex items-center justify-center bg-black/80 backdrop-blur-sm z-[99999]" onClick={onClose}>
-      <button onClick={onClose} className="fixed top-4 right-4 w-10 h-10 flex items-center justify-center bg-white/10 text-white text-xl hover:bg-white/20 transition-colors z-[100000]">✕</button>
-      <div className="relative overflow-hidden animate-popup max-w-[90vw] max-h-[90vh]" style={{ boxShadow: `0 25px 50px ${shadowColor}` }} onClick={(e) => e.stopPropagation()}>
+      <button onClick={onClose} className="fixed top-4 right-4 w-10 h-10 flex items-center justify-center bg-white/10 text-white text-xl hover:bg-white/20 z-[100000]">✕</button>
+      <div className="relative overflow-hidden animate-popup max-w-[90vw] max-h-[90vh]" style={{ boxShadow: '0 25px 50px ' + shadowColor }} onClick={(e) => e.stopPropagation()}>
         <img src={poster.src} alt={poster.alt} className="max-w-full max-h-[85vh] object-contain" draggable="false" />
       </div>
     </div>,
@@ -30,28 +30,20 @@ function ImagePopup({ poster, onClose, shadowColor }) {
 function PostersSection() {
   const { isDarkMode } = useTheme()
   const [selectedPoster, setSelectedPoster] = useState(null)
-  const titleRef = useScrollAnimation({ animation: 'fadeUp', delay: 0 })
   const gridRef = useStaggerAnimation({ selector: '.poster-item', animation: 'scaleUp', stagger: 80, delay: 150 })
-  const taskRef = useScrollAnimation({ animation: 'fadeUp', delay: 200 })
 
-  const textColor = isDarkMode ? 'text-white' : 'text-black'
-  const textMuted = isDarkMode ? 'text-white/60' : 'text-black/60'
-  const textBody = isDarkMode ? 'text-white/80' : 'text-black/80'
   const shadowColor = isDarkMode ? 'rgba(0, 0, 0, 0.6)' : 'rgba(0, 0, 0, 0.3)'
-  const borderColor = isDarkMode ? 'border-white/10' : 'border-black/10'
 
   return (
-    <section id="posters" className={`relative overflow-hidden transition-colors duration-500 ${isDarkMode ? 'bg-[#212631]' : 'bg-[#f2f2f2]'}`}>
-      <style>{`.animate-popup { animation: popupFade 0.3s ease-out forwards; } @keyframes popupFade { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }`}</style>
-
+    <section id="posters" className={'relative overflow-hidden ' + (isDarkMode ? 'bg-[#212631]' : 'bg-[#f2f2f2]')}>
+      <style>{'.animate-popup { animation: popupFade 0.3s ease-out forwards; } @keyframes popupFade { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }'}</style>
       <div ref={gridRef} className="grid grid-cols-3 gap-0">
         {postersData.map((poster) => (
-          <div key={poster.id} className="poster-item aspect-[3/4] overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02]" onClick={() => setSelectedPoster(poster)}>
+          <div key={poster.id} className="poster-item aspect-[3/4] overflow-hidden cursor-pointer" onClick={() => setSelectedPoster(poster)}>
             <img src={poster.src} alt={poster.alt} className="w-full h-full object-fill" loading="lazy" draggable="false" />
           </div>
         ))}
       </div>
-
       {selectedPoster && <ImagePopup poster={selectedPoster} onClose={() => setSelectedPoster(null)} shadowColor={shadowColor} />}
     </section>
   )

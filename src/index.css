@@ -1,6 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Anton&display=swap');
 @import "tailwindcss";
-@import "./styles/responsive.css";
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/SpaceGrotesk-VariableFont_wght.ttf") format("truetype");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Timetwist";
+  src: url("/fonts/Timetwist.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 * {
   margin: 0;
@@ -10,16 +24,21 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+}
+
+section {
+  scroll-snap-align: start;
 }
 
 body {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Theme variables */
 :root {
   --bg-light: #f2f2f2;
   --bg-dark: #212631;
@@ -38,7 +57,7 @@ body {
 }
 
 .portfolio-text {
-  font-family: 'Anton', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   letter-spacing: 0.02em;
 }
 
@@ -48,18 +67,6 @@ body {
   transform: translateZ(0);
 }
 
-/* Smooth scroll snap */
-@media (min-width: 768px) {
-  html {
-    scroll-snap-type: y proximity;
-  }
-  
-  section {
-    scroll-snap-align: start;
-  }
-}
-
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -85,42 +92,142 @@ body {
   background: rgba(255, 255, 255, 0.4);
 }
 
-@font-face {
-    font-family: "Timetwist";
-    src: url("/fonts/Timetwist.ttf") format("truetype");
-    font-weight: 400;
-    font-style: normal;
-}
-
-/* Performance optimizations */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* Improve text rendering */
-body {
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Focus visible for accessibility */
 *:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }
 
-/* Selection colors */
 ::selection {
   background-color: rgba(127, 179, 213, 0.3);
 }
 
 [data-theme="dark"] ::selection {
   background-color: rgba(127, 179, 213, 0.5);
+}
+
+.section-title {
+  font-family: "Timetwist", sans-serif;
+  font-size: 3.75rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: 2rem;
+}
+
+.section-footer-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.header-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.intro-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-align: justify;
+  line-height: 1.625;
+}
+
+.content-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.content-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.content-subtitle {
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.skill-item-text {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.contact-label {
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
+}
+
+.contact-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.contact-icon {
+  font-size: 2.5rem;
+}
+
+.portfolio-title {
+  font-family: "Timetwist", sans-serif;
+  font-size: 140px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  user-select: none;
+}
+
+.portfolio-card-size {
+  width: 10rem;
+}
+
+.card-gap {
+  gap: 0.75rem;
+}
+
+.content-spacing {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.grid-gap {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  column-gap: 6rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.25rem;
+}
+
+.stat-value {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.avatar-size {
+  width: 24rem;
+  height: 24rem;
+}
+
+.rotating-star {
+  font-size: 4.5rem;
+  font-weight: 700;
+  margin-right: -15px;
+  z-index: 10;
 }

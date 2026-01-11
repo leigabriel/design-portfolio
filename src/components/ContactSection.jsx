@@ -16,40 +16,37 @@ function ContactSection() {
   const textColor = isDarkMode ? 'text-white' : 'text-black'
   const textMuted = isDarkMode ? 'text-white/50' : 'text-black/50'
   const footerText = isDarkMode ? 'text-white/60' : 'text-black/80'
-  const iconMuted = isDarkMode ? 'text-white/60 group-hover:text-[#7FB3D5]' : 'text-black/50 group-hover:text-[#7FB3D5]'
+  const iconMuted = isDarkMode ? 'text-white/60 hover:text-[#7FB3D5]' : 'text-black/50 hover:text-[#7FB3D5]'
 
   return (
-    <section id="contact" className={`relative min-h-[70vh] overflow-hidden transition-colors duration-500 ${isDarkMode ? 'bg-[#212631]' : 'bg-[#f2f2f2]'}`}>
-      <div className="section-padding flex flex-col justify-between">
+    <section id="contact" className={'relative min-h-[40vh] overflow-hidden ' + (isDarkMode ? 'bg-[#212631]' : 'bg-[#f2f2f2]')}>
+      <div className="flex flex-col justify-between h-full" style={{ padding: '4rem 5rem' }}>
         <div className="flex-1 flex flex-col justify-center">
-          <h2 ref={titleRef} className={`section-title transition-colors duration-500 ${textColor}`}>[.CONTACT]</h2>
-
-          <div ref={contactRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
+          <h2 ref={titleRef} className={'section-title ' + textColor}>[.CONTACT]</h2>
+          <div ref={contactRef} className="grid grid-cols-2 gap-12">
             {socialLinks.map((link) => (
               <div key={link.name} className="contact-item group">
                 <div className="flex items-start gap-4">
-                  <span className={`contact-icon transition-colors duration-300 ${iconMuted}`}>{link.icon}</span>
+                  <span className={'contact-icon ' + iconMuted}>{link.icon}</span>
                   <div>
-                    <span className={`contact-label block transition-colors duration-500 ${textMuted}`}>{link.name}</span>
+                    <span className={'contact-label block ' + textMuted}>{link.name}</span>
                     {link.href ? (
-                      <a href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined} className={`contact-value block transition-all duration-300 hover:translate-x-1 ${textColor} hover:text-[#7FB3D5]`}>{link.value}</a>
+                      <a href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined} className={'contact-value block hover:text-[#7FB3D5] ' + textColor}>{link.value}</a>
                     ) : (
-                      <p className={`contact-value transition-colors duration-500 ${textColor}`}>{link.value}</p>
+                      <p className={'contact-value ' + textColor}>{link.value}</p>
                     )}
                   </div>
                 </div>
               </div>
             ))}
           </div>
-
-          <div className="mt-14 sm:mt-16">
-            <p className={`intro-text transition-colors duration-500 ${textMuted}`}>Open for freelance projects and collaborations</p>
+          <div className="mt-16">
+            <p className={'intro-text ' + textMuted}>Open for freelance projects and collaborations</p>
           </div>
         </div>
-
         <div className="flex justify-between items-end pt-8">
-          <span className={`section-footer-text transition-colors duration-500 ${footerText}`}>© 2026 Lei Gabriel</span>
-          <span className={`section-footer-text transition-colors duration-500 ${footerText}`}>Crafted with passion</span>
+          <span className={'section-footer-text ' + footerText}>© 2026 Lei Gabriel</span>
+          <span className={'section-footer-text ' + footerText}>Crafted with passion</span>
         </div>
       </div>
     </section>

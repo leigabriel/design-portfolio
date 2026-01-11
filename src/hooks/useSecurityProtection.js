@@ -40,23 +40,7 @@ export function useSecurityProtection() {
     document.addEventListener('keydown', handleKeyDown)
 
     const style = document.createElement('style')
-    style.textContent = `
-      img {
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        pointer-events: auto;
-        -webkit-touch-callout: none;
-      }
-      
-      .no-select {
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-    `
+    style.textContent = 'img { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; pointer-events: auto; -webkit-touch-callout: none; } .no-select { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }'
     document.head.appendChild(style)
 
     return () => {

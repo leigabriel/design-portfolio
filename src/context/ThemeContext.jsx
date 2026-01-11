@@ -12,7 +12,6 @@ export function ThemeProvider({ children }) {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('theme')
       if (saved && themes[saved]) return saved
-      // Default to dark theme
       return 'dark'
     }
     return 'dark'
@@ -24,7 +23,6 @@ export function ThemeProvider({ children }) {
   }, [theme])
 
   const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light')
-
   const isDarkMode = theme === 'dark'
   const currentTheme = themes[theme]
 
