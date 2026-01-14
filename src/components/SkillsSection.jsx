@@ -2,7 +2,7 @@ import { useTheme } from '../context/ThemeContext'
 import { useScrollAnimation, useStaggerAnimation } from '../hooks/useScrollAnimation'
 
 const skillsData = [
-    { category: 'Software', items: ['Affinity by Canva', 'Canva', 'Capcut'] },
+    { category: 'Software', items: ['Affinity by Canva', 'Canva', 'Capcut', 'VS Code'] },
     { category: 'Core Skills', items: ['Poster Design', 'Web Developer', 'Photography', 'UI/UX Design'] },
     { category: 'Languages', items: ['English', 'Filipino'] }
 ]

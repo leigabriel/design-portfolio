@@ -3,7 +3,7 @@ import { useScrollAnimation, useStaggerAnimation } from '../hooks/useScrollAnima
 
 const contentsData = [
     { number: '01', title: 'Posters', status: 'view below' },
-    { number: '02', title: 'Web Projects', status: 'soon' },
+    { number: '02', title: 'Web Projects', status: 'view below' },
     { number: '03', title: 'Photography', status: 'soon' },
     { number: '04', title: 'UI/UX Design', status: 'soon' }
 ]

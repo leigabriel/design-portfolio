@@ -83,12 +83,11 @@ function HeroSection() {
             <header ref={headerRef} className="absolute top-0 left-0 right-0 flex justify-between items-start z-50" style={{ padding: 'clamp(1rem, 3vw, 2rem) clamp(1rem, 5vw, 5rem)' }}>
                 <h1 className={'header-text opacity-0 ' + textColor}>Lei Gabriel</h1>
                 <span className={'header-text text-right opacity-0 ' + textColor}>
-                    Design.Portfolio <br />
-                    <button onClick={toggleTheme} className="hover:underline cursor-pointer">[.{isDarkMode ? 'Light' : 'Dark'} Mode]</button>
+                    <button onClick={toggleTheme} className="hover:underline cursor-pointer">{isDarkMode ? 'Light' : 'Dark'} Mode</button>
                 </span>
             </header>
             <div className="absolute inset-0 flex items-center justify-center z-10 translate-y-[-10%]">
-                <h2 ref={titleRef} className={'portfolio-title opacity-0 ' + textColor} style={{ willChange: 'transform' }}>[.PORTFOLIO]</h2>
+                <h2 ref={titleRef} className={'portfolio-title opacity-0 ' + textColor} style={{ willChange: 'transform' }}>PORTFOLIO</h2>
             </div>
             <div className="absolute inset-0 flex items-center justify-center z-20">
                 <div className="flex items-end justify-center card-gap translate-y-[25%]" style={{ perspective: '1000px' }}>
@@ -96,8 +95,8 @@ function HeroSection() {
                 </div>
             </div>
             <footer ref={footerRef} className="absolute bottom-0 left-0 right-0 flex justify-between items-end z-50" style={{ padding: 'clamp(1rem, 3vw, 2rem) clamp(1rem, 5vw, 5rem)' }}>
-                <span className={'header-text opacity-0 ' + textColor}>Portfolio 2026</span>
-                <span className={'header-text opacity-0 ' + textColor}>Graphic Designer / Web Developer</span>
+                <span className={'header-text opacity-0 ' + textColor}>Web Developer/</span>
+                <span className={'header-text opacity-0 ' + textColor}>Graphic Designer</span>
             </footer>
             {selectedItem && <ImagePopup item={selectedItem} onClose={() => setSelectedItem(null)} shadowColor={shadowColor} />}
         </section>

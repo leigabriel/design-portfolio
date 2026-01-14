@@ -6,6 +6,8 @@ import SkillsSection from './components/SkillsSection'
 import ContentsSection from './components/ContentsSection'
 import PosterTitleSection from './components/PosterTitleSection'
 import PostersSection from './components/PostersSection'
+import WebTitleSection from './components/WebTitleSection'
+import WebProjectSection from './components/WebProjectSection'
 import ContactSection from './components/ContactSection'
 
 function AppContent() {
@@ -20,6 +22,8 @@ function AppContent() {
             <ContentsSection />
             <PosterTitleSection />
             <PostersSection />
+            <WebTitleSection />
+            <WebProjectSection />
             <ContactSection />
         </main>
     )

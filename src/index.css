@@ -127,7 +127,7 @@ section {
 }
 
 .header-text {
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 600;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -143,14 +143,14 @@ section {
 }
 
 .content-title {
-    font-size: 1.125rem;
+    font-size: 1.5rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
 .content-number {
-    font-size: 1.125rem;
+    font-size: 1.5rem;
     font-weight: 700;
 }
 
@@ -162,12 +162,12 @@ section {
 }
 
 .skill-item-text {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 500;
 }
 
 .contact-label {
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -175,7 +175,7 @@ section {
 }
 
 .contact-value {
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 600;
     word-break: break-word;
 }
@@ -186,8 +186,8 @@ section {
 
 .portfolio-title {
     font-family: "Timetwist", sans-serif;
-    font-size: clamp(2.5rem, 10vw, 140px);
-    font-weight: 900;
+    font-size: clamp(3.1rem, 10vw, 140px);
+    font-weight: 400;
     letter-spacing: -0.02em;
     line-height: 1;
     user-select: none;
@@ -263,7 +263,7 @@ section {
 /* Desktop breakpoint (lg: 1024px) */
 @media (min-width: 1024px) {
     .section-title {
-        font-size: 3.75rem;
+        font-size: 4.75rem;
         margin-bottom: 2rem;
     }
 
@@ -284,11 +284,11 @@ section {
     }
 
     .content-title {
-        font-size: 1.5rem;
+        font-size: 2.0rem;
     }
 
     .content-number {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
     }
 
     .content-subtitle {
@@ -296,7 +296,7 @@ section {
     }
 
     .skill-item-text {
-        font-size: 1.125rem;
+        font-size: 1.7rem;
     }
 
     .contact-label {

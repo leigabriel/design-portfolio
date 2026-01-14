@@ -11,8 +11,8 @@ const postersData = [
     { id: 5, src: '/img/posters/05-pusa.png', alt: 'Pusa Poster' },
     { id: 6, src: '/img/posters/06-jennie.png', alt: 'Jennie Poster' },
     { id: 7, src: '/img/posters/07-perception.png', alt: 'Perception Poster' },
-    { id: 8, src: '/img/posters/01-multo.png', alt: 'Multo Poster Alt' },
-    { id: 9, src: '/img/posters/02-vintage.png', alt: 'Vintage Poster Alt' }
+    { id: 8, src: '/img/posters/08-kanibalismo.png', alt: 'Kanibalismo Poster' },
+    { id: 9, src: '/img/posters/09-kalayaan.png', alt: 'Vintage Poster' }
 ]
 
 function ImagePopup({ poster, onClose, shadowColor }) {

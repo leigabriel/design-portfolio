@@ -20,6 +20,9 @@ function ContactSection() {
 
     return (
         <section id="contact" className={'relative min-h-[40vh] overflow-hidden ' + (isDarkMode ? 'bg-[#212631]' : 'bg-[#f2f2f2]')}>
+            <div className="section-padding flex flex-col justify-between h-full"></div>
+            <div className="section-padding flex flex-col justify-between h-full"></div>
+            <div className="section-padding flex flex-col justify-between h-full"></div>
             <div className="section-padding flex flex-col justify-between h-full">
                 <div className="flex-1 flex flex-col justify-center">
                     <h2 ref={titleRef} className={'section-title ' + textColor}>[.CONTACT]</h2>
@@ -29,7 +32,7 @@ function ContactSection() {
                                 <div className="flex items-start gap-3 md:gap-4">
                                     <span className={'contact-icon flex-shrink-0 ' + iconMuted}>{link.icon}</span>
                                     <div className="min-w-0 flex-1">
-                                        <span className={'contact-label block ' + textMuted}>{link.name}</span>
+                                        <span className={'contact-label ' + textMuted}>{link.name}</span>
                                         {link.href ? (
                                             <a href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined} className={'contact-value block hover:text-[#7FB3D5] break-words ' + textColor}>{link.value}</a>
                                         ) : (
