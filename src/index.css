@@ -111,6 +111,12 @@ section {
 }
 
 /* Base mobile-first typography */
+.alt-text {
+    font-size: 0.5rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
 .section-title {
     font-family: "Timetwist", sans-serif;
     font-size: 2rem;
