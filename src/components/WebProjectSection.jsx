@@ -18,11 +18,11 @@ function WebProjectSection() {
 
     return (
         <section id="posters" className={'relative overflow-hidden ' + (isDarkMode ? 'bg-[#212631]' : 'bg-[#f2f2f2]')}>
-            <div ref={gridRef} className="grid grid-cols-3 gap-0">
+            <div ref={gridRef} className="grid grid-cols-2 gap-0">
                 {postersData.map((project) => (
                     <div
                         key={project.id}
-                        className="poster-item aspect-[3/4] overflow-hidden cursor-pointer relative group"
+                        className="poster-item aspect-[4/5] overflow-hidden cursor-pointer relative group"
                         onClick={() => {
                             if (project.liveUrl) {
                                 window.open(project.liveUrl, '_blank', 'noopener,noreferrer');
