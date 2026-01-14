@@ -37,9 +37,9 @@ function PostersSection() {
     return (
         <section id="posters" className={'relative overflow-hidden ' + (isDarkMode ? 'bg-[#212631]' : 'bg-[#f2f2f2]')}>
             <style>{'.animate-popup { animation: popupFade 0.3s ease-out forwards; } @keyframes popupFade { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }'}</style>
-            <div ref={gridRef} className="grid grid-cols-3 gap-0">
+            <div ref={gridRef} className="grid grid-cols-2 gap-0">
                 {postersData.map((poster) => (
-                    <div key={poster.id} className="poster-item aspect-[3/4] overflow-hidden cursor-pointer" onClick={() => setSelectedPoster(poster)}>
+                    <div key={poster.id} className="poster-item aspect-[4/5] overflow-hidden cursor-pointer" onClick={() => setSelectedPoster(poster)}>
                         <img src={poster.src} alt={poster.alt} className="w-full h-full object-fill" loading="lazy" draggable="false" />
                     </div>
                 ))}
