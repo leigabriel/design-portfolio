@@ -13,29 +13,36 @@ function WebProjectSection() {
             alt: 'Dental Booking System',
             liveUrl: 'https://dentalcare-health.ct.ws/',
             title: 'Dental Care System'
+        },
+        {
+            id: 2,
+            src: '/img/web/02-motivation.png',
+            alt: 'Dental Booking System',
+            liveUrl: 'https://motivationperday.netlify.app/',
+            title: 'Motivation App'
         }
     ];
 
     return (
         <section id="posters" className={'relative overflow-hidden ' + (isDarkMode ? 'bg-[#212631]' : 'bg-[#f2f2f2]')}>
-            <div ref={gridRef} className="grid grid-cols-3 gap-0">
+            <div ref={gridRef} className="grid grid-cols-2 gap-0">
                 {postersData.map((project) => (
                     <div
                         key={project.id}
-                        className="poster-item aspect-[3/4] overflow-hidden cursor-pointer relative group"
+                        className="poster-item aspect-[4/5] overflow-hidden cursor-pointer relative group"
                         onClick={() => {
                             if (project.liveUrl) {
                                 window.open(project.liveUrl, '_blank', 'noopener,noreferrer');
                             }
                         }}
                     >
-                        <div className="absolute top-0 left-0 w-full z-10 uppercase text-white text-left py-2 text-sm font-semibold tracking-wide">
+                        {/* <div className="absolute top-0 left-0 w-full z-10 uppercase text-white text-left py-2 text-sm font-semibold tracking-wide">
                             {project.title}
-                        </div>
+                        </div> */}
                         <img
                             src={project.src}
                             alt={project.alt}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-fill"
                             loading="lazy"
                             draggable="false"
                         />

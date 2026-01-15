@@ -20,7 +20,7 @@ function ImagePopup({ item, onClose, shadowColor }) {
     }, [onClose])
 
     return createPortal(
-        <div className="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm z-[99999]" onClick={onClose}>
+        <div className="fixed inset-0 flex items-center justify-center bg-[#212631]/75 backdrop-blur-sm z-[99999]" onClick={onClose}>
             <button onClick={onClose} className="fixed top-4 right-4 w-10 h-10 flex items-center justify-center bg-white/10 text-white text-xl hover:bg-white/20 z-[100000]">✕</button>
             <div className="relative overflow-hidden animate-popup" style={{ boxShadow: '0 25px 50px ' + shadowColor }} onClick={(e) => e.stopPropagation()}>
                 <img src={item.image} alt={'Project ' + item.id} className="w-[90vw] max-w-[500px] h-auto object-contain" draggable="false" />
@@ -46,7 +46,7 @@ function PortfolioCard({ item, index, onSelect, shadowColor }) {
     return (
         <div
             ref={cardRef}
-            className="portfolio-card relative portfolio-card-size aspect-[5/7] overflow-hidden cursor-pointer opacity-0"
+            className="portfolio-card relative portfolio-card-size aspect-[99/140] overflow-hidden cursor-pointer opacity-0"
             style={{ transform: 'rotate(' + item.rotate + 'deg)', boxShadow: isHovered ? '0 30px 60px ' + shadowColor : '0 20px 40px ' + shadowColor }}
             onMouseEnter={() => handleHover(true)}
             onMouseLeave={() => handleHover(false)}
@@ -83,7 +83,7 @@ function HeroSection() {
             <header ref={headerRef} className="absolute top-0 left-0 right-0 flex justify-between items-start z-50" style={{ padding: 'clamp(1rem, 3vw, 2rem) clamp(1rem, 5vw, 5rem)' }}>
                 <h1 className={'header-text opacity-0 ' + textColor}>Lei Gabriel</h1>
                 <span className={'header-text text-right opacity-0 ' + textColor}>
-                    <button onClick={toggleTheme} className="hover:underline cursor-pointer">{isDarkMode ? 'Light' : 'Dark'} Mode</button>
+                    <button onClick={toggleTheme} className="hover:underline uppercase cursor-pointer">{isDarkMode ? 'Light' : 'Dark'} Mode</button>
                 </span>
             </header>
             <div className="absolute inset-0 flex items-center justify-center z-10 translate-y-[-10%]">

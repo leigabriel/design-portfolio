@@ -11,13 +11,13 @@ const postersData = [
     { id: 5, src: '/img/posters/05-pusa.png', alt: 'Pusa Poster' },
     { id: 6, src: '/img/posters/06-jennie.png', alt: 'Jennie Poster' },
     { id: 7, src: '/img/posters/07-perception.png', alt: 'Perception Poster' },
-    { id: 8, src: '/img/posters/08-kanibalismo.png', alt: 'Kanibalismo Poster' },
-    { id: 9, src: '/img/posters/09-kalayaan.png', alt: 'Vintage Poster' }
+    { id: 8, src: '/img/posters/08-kanibalismo.png', alt: 'Kanibalismo Poster' }
+    // { id: 9, src: '/img/posters/09-kalayaan.png', alt: 'Vintage Poster' }
 ]
 
 function ImagePopup({ poster, onClose, shadowColor }) {
     return createPortal(
-        <div className="fixed inset-0 flex items-center justify-center bg-black/80 backdrop-blur-sm z-[99999]" onClick={onClose}>
+        <div className="fixed inset-0 flex items-center justify-center bg-[#212631]/75 backdrop-blur-sm z-[99999]" onClick={onClose}>
             <button onClick={onClose} className="fixed top-4 right-4 w-10 h-10 flex items-center justify-center bg-white/10 text-white text-xl hover:bg-white/20 z-[100000]">✕</button>
             <div className="relative overflow-hidden animate-popup max-w-[90vw] max-h-[90vh]" style={{ boxShadow: '0 25px 50px ' + shadowColor }} onClick={(e) => e.stopPropagation()}>
                 <img src={poster.src} alt={poster.alt} className="max-w-full max-h-[85vh] object-contain" draggable="false" />
@@ -37,9 +37,9 @@ function PostersSection() {
     return (
         <section id="posters" className={'relative overflow-hidden ' + (isDarkMode ? 'bg-[#212631]' : 'bg-[#f2f2f2]')}>
             <style>{'.animate-popup { animation: popupFade 0.3s ease-out forwards; } @keyframes popupFade { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }'}</style>
-            <div ref={gridRef} className="grid grid-cols-3 gap-0">
+            <div ref={gridRef} className="grid grid-cols-2 gap-0">
                 {postersData.map((poster) => (
-                    <div key={poster.id} className="poster-item aspect-[3/4] overflow-hidden cursor-pointer" onClick={() => setSelectedPoster(poster)}>
+                    <div key={poster.id} className="poster-item aspect-[4/5] overflow-hidden cursor-pointer" onClick={() => setSelectedPoster(poster)}>
                         <img src={poster.src} alt={poster.alt} className="w-full h-full object-fill" loading="lazy" draggable="false" />
                     </div>
                 ))}
