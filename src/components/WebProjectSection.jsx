@@ -10,42 +10,7 @@ const projectsData = [
         title: 'Dental Care System'
     },
     {
-        id: 1,
-        src: '/img/web/01-dental.png',
-        alt: 'Dental Booking System',
-        liveUrl: 'https://dentalcare-health.ct.ws/',
-        title: 'Dental Care System'
-    },
-    {
-        id: 1,
-        src: '/img/web/01-dental.png',
-        alt: 'Dental Booking System',
-        liveUrl: 'https://dentalcare-health.ct.ws/',
-        title: 'Dental Care System'
-    },
-    {
-        id: 1,
-        src: '/img/web/01-dental.png',
-        alt: 'Dental Booking System',
-        liveUrl: 'https://dentalcare-health.ct.ws/',
-        title: 'Dental Care System'
-    },
-    {
-        id: 1,
-        src: '/img/web/01-dental.png',
-        alt: 'Dental Booking System',
-        liveUrl: 'https://dentalcare-health.ct.ws/',
-        title: 'Dental Care System'
-    },
-    {
-        id: 1,
-        src: '/img/web/01-dental.png',
-        alt: 'Dental Booking System',
-        liveUrl: 'https://dentalcare-health.ct.ws/',
-        title: 'Dental Care System'
-    },
-    {
-        id: 3,
+        id: 2,
         src: '/img/web/02-motivation.png',
         alt: 'Motivation App',
         liveUrl: 'https://motivationperday.netlify.app/',
