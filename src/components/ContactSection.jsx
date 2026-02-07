@@ -10,7 +10,7 @@ function ContactSection() {
         <section id="contact" className="folder-section relative min-h-[40vh] overflow-hidden bg-[#000000]">
             <div className="section-padding flex flex-col justify-between h-full">
                 <div className="flex-1 flex flex-col justify-center">
-                    <h2 className="section-title text-white">[.CONTACT]</h2>
+                    <h2 className="section-title text-white">[.MALIBIRAN LEI GABRIEL]</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
                         {socialLinks.map((link) => (
                             <div key={link.name} className="group">
@@ -29,11 +29,11 @@ function ContactSection() {
                         ))}
                     </div>
                     <div className="mt-10 md:mt-16">
+                        <br /> <br />
                         <p className="intro-text text-white/50">Open for freelance projects and collaborations</p>
                     </div>
                 </div>
                 <div className="flex flex-col sm:flex-row justify-between items-center sm:items-end gap-2 sm:gap-0 pt-6 md:pt-8">
-                    <span className="section-footer-text text-white/60"></span>
                     <span className="section-footer-text text-white/60">© All Right Reserved 2026 Lei Gabriel</span>
                 </div>
             </div>

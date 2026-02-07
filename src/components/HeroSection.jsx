@@ -52,7 +52,6 @@ function HeroSection({ onMenuOpen }) {
     const titleDepartureRef = useHeroDeparture({ fadeStart: 0.1, fadeEnd: 0.55, parallaxSpeed: -0.15, lerpFactor: 0.06 })
     const cardsDepartureRef = useHeroDeparture({ fadeStart: 0.12, fadeEnd: 0.5, parallaxSpeed: -0.08, lerpFactor: 0.05 })
     const headerDepartureRef = useHeroDeparture({ fadeStart: 0.08, fadeEnd: 0.4, parallaxSpeed: -0.25, lerpFactor: 0.07 })
-    const footerDepartureRef = useHeroDeparture({ fadeStart: 0.08, fadeEnd: 0.4, parallaxSpeed: -0.2, lerpFactor: 0.07 })
 
     return (
         <section id="hero" className="relative h-screen overflow-hidden bg-[#000000]">
@@ -76,16 +75,12 @@ function HeroSection({ onMenuOpen }) {
                 <h2 className="portfolio-title text-white hero-title-entrance" style={{ willChange: 'transform' }}>LEI GABRIEL</h2>
             </div>
             <div ref={cardsDepartureRef} className="absolute inset-0 flex items-center justify-center z-20">
-                <div className="flex items-end justify-center card-gap translate-y-[25%]" style={{ perspective: '1000px' }}>
+                <div className="flex items-end justify-center card-gap translate-y-[30%]" style={{ perspective: '1000px' }}>
                     {portfolioItems.map((item, index) => (
                         <PortfolioCard key={item.id} item={item} index={index} onSelect={setSelectedItem} />
                     ))}
                 </div>
             </div>
-            {/* <footer ref={footerDepartureRef} className="absolute bottom-0 left-0 right-0 flex justify-between items-end z-50" style={{ padding: 'clamp(1rem, 3vw, 2rem) clamp(1rem, 5vw, 5rem)' }}>
-                <span className="header-text text-white hero-entrance hero-entrance-delay-1">Web Developer/</span>
-                <span className="header-text text-white hero-entrance hero-entrance-delay-2">Graphic Designer</span>
-            </footer> */}
             {selectedItem && <ImagePopup item={selectedItem} onClose={() => setSelectedItem(null)} />}
         </section>
     )

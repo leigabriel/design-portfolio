@@ -13,7 +13,7 @@ function SkillsSection() {
     return (
         <section id="skills" className="folder-section relative min-h-[50vh] overflow-hidden bg-[#f3f706]">
             <div className="section-padding">
-                <h2 ref={titleRef} className="section-title mb-8 md:mb-12 text-black">[.SKILLS]</h2>
+                <h2 className="section-title mb-8 md:mb-12 text-black">[.SKILLS]</h2>
                 <div ref={skillsRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
                     {skillsData.map((skill) => (
                         <div key={skill.category} className="skill-item">

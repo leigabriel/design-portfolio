@@ -2,14 +2,13 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation'
 import { useSmoothScroll } from '../context/SmoothScrollContext'
 
 const contentsData = [
-    { number: '01', title: 'Poster Design', status: 'view', target: 'poster-title', color: '#E8C547' },
-    { number: '02', title: 'Web Projects', status: 'view', target: 'web-title', color: '#7FB3D5' },
-    { number: '03', title: 'Photography', status: 'soon', target: null, color: '#F5A6A6' },
-    { number: '04', title: 'UI/UX Design', status: 'soon', target: null, color: '#A6F5C5' }
+    { number: '01', title: 'Poster Design', status: 'view', target: 'poster-title', color: '#ffffff' },
+    { number: '02', title: 'Web Projects', status: 'view', target: 'web-title', color: '#f3f706' },
+    { number: '03', title: 'Photography', status: 'soon', target: null, color: '#a6F5C5' },
+    { number: '04', title: 'UI/UX Design', status: 'soon', target: null, color: '#f05fc4' }
 ]
 
 function ContentsSection() {
-    const titleRef = useScrollAnimation({ animation: 'rotateIn', delay: 0 })
     const ctx = useSmoothScroll()
 
     const handleClick = (target) => {
@@ -24,7 +23,7 @@ function ContentsSection() {
     return (
         <section id="contents" className="folder-section relative min-h-[50vh] overflow-hidden bg-[#004aeb]">
             <div className="section-padding">
-                <h2 ref={titleRef} className="section-title mb-8 md:mb-12 text-white">[.CONTENTS]</h2>
+                <h2 className="section-title mb-8 md:mb-12 text-white">[.CONTENTS]</h2>
                 <div className="contents-grid">
                     {contentsData.map((item) => (
                         <div

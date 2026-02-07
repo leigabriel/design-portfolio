@@ -46,24 +46,16 @@ function useStickyHorizontalScroll(sectionRef, trackRef) {
             const section = sectionRef.current
             const track = trackRef.current
             if (!section || !track) return
-
             const rect = section.getBoundingClientRect()
             const sectionHeight = section.offsetHeight
             const viewportHeight = window.innerHeight
-
-            // Calculate scroll progress within the sticky section
-            // Progress: 0 = section just entered, 1 = section about to leave
             const scrollDistance = sectionHeight - viewportHeight
             const scrolled = -rect.top
             const progress = clamp(scrolled / scrollDistance)
-
-            // Calculate horizontal translation
             const trackWidth = track.scrollWidth
             const containerWidth = section.offsetWidth
             const maxTranslate = trackWidth - containerWidth
             const targetX = -progress * maxTranslate
-
-            // Smooth interpolation
             currentX.current = lerp(currentX.current, targetX, 0.08)
             if (Math.abs(currentX.current - targetX) < 0.5) currentX.current = targetX
 
@@ -86,7 +78,7 @@ function PostersSection() {
             ref={sectionRef}
             id="posters"
             className="poster-sticky-section relative bg-[#ffffff]"
-            style={{ height: '300vh' }} // Extra height for scroll distance
+            style={{ height: '300vh' }}
         >
             <style>{`
                 .animate-popup { animation: popupFade 0.3s ease-out forwards; }
@@ -110,11 +102,11 @@ function PostersSection() {
                 }
                 .poster-item-sticky {
                     flex-shrink: 0;
-                    height: 80vh;
+                    height: 100vh;
                     aspect-ratio: 4/5;
                     overflow: hidden;
                     cursor: pointer;
-                    border-radius: 0.5rem;
+                    border-radius: 0rem;
                     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
                 }
                 .poster-item-sticky:hover {

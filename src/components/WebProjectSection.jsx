@@ -10,7 +10,35 @@ const projectsData = [
         title: 'Dental Care System'
     },
     {
-        id: 2,
+        id: 1,
+        src: '/img/web/01-dental.png',
+        alt: 'Dental Booking System',
+        liveUrl: 'https://dentalcare-health.ct.ws/',
+        title: 'Dental Care System'
+    },
+    {
+        id: 1,
+        src: '/img/web/01-dental.png',
+        alt: 'Dental Booking System',
+        liveUrl: 'https://dentalcare-health.ct.ws/',
+        title: 'Dental Care System'
+    },
+    {
+        id: 1,
+        src: '/img/web/01-dental.png',
+        alt: 'Dental Booking System',
+        liveUrl: 'https://dentalcare-health.ct.ws/',
+        title: 'Dental Care System'
+    },
+    {
+        id: 1,
+        src: '/img/web/01-dental.png',
+        alt: 'Dental Booking System',
+        liveUrl: 'https://dentalcare-health.ct.ws/',
+        title: 'Dental Care System'
+    },
+    {
+        id: 1,
         src: '/img/web/01-dental.png',
         alt: 'Dental Booking System',
         liveUrl: 'https://dentalcare-health.ct.ws/',
@@ -77,7 +105,7 @@ function WebProjectSection() {
             ref={sectionRef}
             id="web-projects"
             className="web-sticky-section relative bg-[#f3f706]"
-            style={{ height: '200vh' }}
+            style={{ height: '300vh' }}
         >
             <style>{`
                 .web-sticky-section {
@@ -99,11 +127,11 @@ function WebProjectSection() {
                 }
                 .web-item-sticky {
                     flex-shrink: 0;
-                    height: 80vh;
+                    height: 100vh;
                     aspect-ratio: 4/5;
                     overflow: hidden;
                     cursor: pointer;
-                    border-radius: 0.75rem;
+                    border-radius: 0rem;
                     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
                     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
                 }
@@ -123,7 +151,7 @@ function WebProjectSection() {
                         padding: 0 1rem;
                     }
                     .web-item-sticky {
-                        height: 50vh;
+                        height: 70vh;
                         border-radius: 0.5rem;
                     }
                 }

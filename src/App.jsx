@@ -22,14 +22,13 @@ function ScrollRevealHeader({ onMenuOpen }) {
     useEffect(() => {
         if (!ctx) return
 
-        const SCROLL_THRESHOLD = 5 // Minimum scroll delta to trigger visibility change
-        const HERO_THRESHOLD = window.innerHeight * 0.3 // Show earlier, at 30% of viewport
+        const SCROLL_THRESHOLD = 1
+        const HERO_THRESHOLD = window.innerHeight * 0.3
 
         const unsubscribe = ctx.subscribe(({ scrollY }) => {
             const delta = scrollY - lastScrollY.current
             scrollDelta.current += delta
 
-            // Only update visibility when scroll delta exceeds threshold
             if (Math.abs(scrollDelta.current) > SCROLL_THRESHOLD) {
                 const isScrollingUp = scrollDelta.current < 0
                 const isAtTop = scrollY < 100
@@ -41,7 +40,7 @@ function ScrollRevealHeader({ onMenuOpen }) {
                     setVisible(isScrollingUp)
                 }
 
-                scrollDelta.current = 0 // Reset delta after threshold reached
+                scrollDelta.current = 0
             }
 
             lastScrollY.current = scrollY
@@ -75,10 +74,9 @@ function AppContent() {
 
     return (
         <>
-            {/* {loading && <LoadingScreen onComplete={handleLoadingComplete} />} */}
             <ScrollRevealHeader onMenuOpen={nav.open} />
             <NavigationSidebar isOpen={nav.isOpen} onClose={nav.close} />
-            <main className="bg-[#212631]">
+            <main className="bg-[#000000]">
                 <HeroSection onMenuOpen={nav.open} />
                 <div className="sticky-sections-container">
                     <AboutSection />

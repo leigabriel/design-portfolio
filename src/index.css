@@ -28,7 +28,8 @@ html {
     color: #ebebeb;
 }
 
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
     height: auto;
 }
 
@@ -178,7 +179,7 @@ section {
 
 .portfolio-title {
     font-family: "Timetwist", sans-serif;
-    font-size: clamp(3.1rem, 11vw, 160px);
+    font-size: clamp(3.3rem, 11vw, 160px);
     font-weight: 400;
     letter-spacing: -0.02em;
     line-height: 1;
@@ -187,7 +188,7 @@ section {
 }
 
 .portfolio-card-size {
-    width: 4rem;
+    width: 6rem;
 }
 
 .card-gap {
@@ -241,19 +242,42 @@ section {
     z-index: 1;
 }
 
-.folder-section + .folder-section {
+.folder-section+.folder-section {
     margin-top: -1rem;
     z-index: 2;
 }
 
-.folder-section:nth-child(3) { z-index: 3; }
-.folder-section:nth-child(4) { z-index: 4; }
-.folder-section:nth-child(5) { z-index: 5; }
-.folder-section:nth-child(6) { z-index: 6; }
-.folder-section:nth-child(7) { z-index: 7; }
-.folder-section:nth-child(8) { z-index: 8; }
-.folder-section:nth-child(9) { z-index: 9; }
-.folder-section:nth-child(10) { z-index: 10; }
+.folder-section:nth-child(3) {
+    z-index: 3;
+}
+
+.folder-section:nth-child(4) {
+    z-index: 4;
+}
+
+.folder-section:nth-child(5) {
+    z-index: 5;
+}
+
+.folder-section:nth-child(6) {
+    z-index: 6;
+}
+
+.folder-section:nth-child(7) {
+    z-index: 7;
+}
+
+.folder-section:nth-child(8) {
+    z-index: 8;
+}
+
+.folder-section:nth-child(9) {
+    z-index: 9;
+}
+
+.folder-section:nth-child(10) {
+    z-index: 10;
+}
 
 /* Sticky sections container */
 .sticky-sections-container {
@@ -263,7 +287,7 @@ section {
 .sticky-sections-container .folder-section {
     position: sticky;
     top: 0;
-    min-height: 100vh;
+    min-height: 60vh;
     overflow: visible !important;
 }
 
@@ -326,11 +350,25 @@ section {
 }
 
 @keyframes loadingProgress {
-    0% { width: 0%; }
-    30% { width: 40%; }
-    60% { width: 70%; }
-    80% { width: 85%; }
-    100% { width: 100%; }
+    0% {
+        width: 0%;
+    }
+
+    30% {
+        width: 40%;
+    }
+
+    60% {
+        width: 70%;
+    }
+
+    80% {
+        width: 85%;
+    }
+
+    100% {
+        width: 100%;
+    }
 }
 
 .loading-text {
@@ -344,8 +382,15 @@ section {
 }
 
 @keyframes loadingPulse {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
+
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
 }
 
 .loading-exit {
@@ -353,8 +398,16 @@ section {
 }
 
 @keyframes loadingFadeOut {
-    0% { opacity: 1; transform: scale(1); }
-    100% { opacity: 0; transform: scale(1.05); pointer-events: none; }
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.05);
+        pointer-events: none;
+    }
 }
 
 .nav-sidebar {
@@ -394,7 +447,7 @@ section {
 
 .nav-link {
     font-family: "Timetwist", sans-serif;
-    font-size: clamp(1rem, 5vw, 3.5rem);
+    font-size: clamp(1rem, 5vw, 5rem);
     font-weight: 400;
     color: #ebebeb;
     text-decoration: none;
@@ -627,7 +680,7 @@ section {
     }
 
     .portfolio-card-size {
-        width: 7rem;
+        width: 8rem;
     }
 
     .card-gap {
@@ -690,7 +743,7 @@ section {
 
 @media (min-width: 1024px) {
     .section-title {
-        font-size: 4.75rem;
+        font-size: 5.75rem;
         margin-bottom: 2rem;
     }
 
@@ -740,7 +793,7 @@ section {
     }
 
     .portfolio-card-size {
-        width: 11rem;
+        width: 10rem;
     }
 
     .card-gap {
@@ -793,7 +846,7 @@ section {
 
     .folder-body {
         min-height: 180px;
-        padding: 2rem;
+        padding: 1rem;
     }
 
     .folder-title {
