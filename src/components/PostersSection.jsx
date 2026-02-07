@@ -32,72 +32,140 @@ function ImagePopup({ poster, onClose }) {
     )
 }
 
-function useScrollMaskGrid(containerRef, selector = '.poster-item') {
-    const itemStates = useRef([])
+function useStickyHorizontalScroll(sectionRef, trackRef) {
     const ctx = useSmoothScroll()
+    const currentX = useRef(0)
 
     useEffect(() => {
-        if (!containerRef.current || !ctx) return
-
-        const items = containerRef.current.querySelectorAll(selector)
-        if (!items.length) return
-
-        itemStates.current = Array.from(items).map(() => ({
-            clip: 100,
-            scale: 1.15,
-            opacity: 0,
-        }))
+        if (!sectionRef.current || !trackRef.current || !ctx) return
 
         const lerp = (a, b, t) => a + (b - a) * t
         const clamp = (v, min = 0, max = 1) => Math.min(max, Math.max(min, v))
 
         const unsubscribe = ctx.subscribe(() => {
-            const wh = window.innerHeight
-            items.forEach((item, i) => {
-                const rect = item.getBoundingClientRect()
-                const progress = clamp((wh - rect.top) / (wh + rect.height))
-                const t = clamp((progress - 0.02) / 0.43)
-                const eased = 1 - Math.pow(1 - t, 3)
+            const section = sectionRef.current
+            const track = trackRef.current
+            if (!section || !track) return
 
-                const state = itemStates.current[i]
-                if (!state) return
+            const rect = section.getBoundingClientRect()
+            const sectionHeight = section.offsetHeight
+            const viewportHeight = window.innerHeight
 
-                const targetClip = lerp(100, 0, eased)
-                const targetScale = lerp(1.15, 1, eased)
-                const targetOpacity = lerp(0, 1, eased)
+            // Calculate scroll progress within the sticky section
+            // Progress: 0 = section just entered, 1 = section about to leave
+            const scrollDistance = sectionHeight - viewportHeight
+            const scrolled = -rect.top
+            const progress = clamp(scrolled / scrollDistance)
 
-                state.clip = lerp(state.clip, targetClip, 0.08)
-                state.scale = lerp(state.scale, targetScale, 0.08)
-                state.opacity = lerp(state.opacity, targetOpacity, 0.08)
+            // Calculate horizontal translation
+            const trackWidth = track.scrollWidth
+            const containerWidth = section.offsetWidth
+            const maxTranslate = trackWidth - containerWidth
+            const targetX = -progress * maxTranslate
 
-                if (Math.abs(state.clip - targetClip) < 0.1) state.clip = targetClip
-                if (Math.abs(state.opacity - targetOpacity) < 0.001) state.opacity = targetOpacity
+            // Smooth interpolation
+            currentX.current = lerp(currentX.current, targetX, 0.08)
+            if (Math.abs(currentX.current - targetX) < 0.5) currentX.current = targetX
 
-                item.style.clipPath = `inset(${state.clip}% 0% 0% 0%)`
-                item.style.transform = `scale(${state.scale}) translateZ(0)`
-                item.style.opacity = state.opacity
-            })
+            track.style.transform = `translateX(${currentX.current}px) translateZ(0)`
         })
 
         return unsubscribe
-    }, [containerRef, ctx, selector])
+    }, [sectionRef, trackRef, ctx])
 }
 
 function PostersSection() {
     const [selectedPoster, setSelectedPoster] = useState(null)
-    const gridRef = useRef(null)
+    const sectionRef = useRef(null)
+    const trackRef = useRef(null)
 
-    useScrollMaskGrid(gridRef)
+    useStickyHorizontalScroll(sectionRef, trackRef)
 
     return (
-        <section id="posters" className="folder-section relative overflow-hidden bg-[#ffffff]">
-            <style>{'.animate-popup { animation: popupFade 0.3s ease-out forwards; } @keyframes popupFade { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }'}</style>
-            <div ref={gridRef} className="grid grid-cols-3 gap-0">
-                {postersData.map((poster) => (
-                    <div key={poster.id} className="poster-item aspect-[4/5] overflow-hidden cursor-pointer" style={{ willChange: 'clip-path, transform, opacity' }} onClick={() => setSelectedPoster(poster)}>
-                        <img src={poster.src} alt={poster.alt} className="w-full h-full object-fill" loading="lazy" draggable="false" />
-                    </div>
-                ))}
+        <section
+            ref={sectionRef}
+            id="posters"
+            className="poster-sticky-section relative bg-[#ffffff]"
+            style={{ height: '300vh' }} // Extra height for scroll distance
+        >
+            <style>{`
+                .animate-popup { animation: popupFade 0.3s ease-out forwards; }
+                @keyframes popupFade { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+                .poster-sticky-section {
+                    position: relative;
+                }
+                .poster-sticky-inner {
+                    position: sticky;
+                    top: 0;
+                    height: 100vh;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                }
+                .poster-track {
+                    display: flex;
+                    gap: 1rem;
+                    padding: 0 2rem;
+                    will-change: transform;
+                }
+                .poster-item-sticky {
+                    flex-shrink: 0;
+                    height: 80vh;
+                    aspect-ratio: 4/5;
+                    overflow: hidden;
+                    cursor: pointer;
+                    border-radius: 0.5rem;
+                    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+                }
+                .poster-item-sticky:hover {
+                    transform: scale(1.05) translateY(-10px);
+                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+                }
+                .poster-item-sticky img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    pointer-events: none;
+                }
+                
+                /* Mobile responsive styles */
+                @media (max-width: 640px) {
+                    .poster-track {
+                        gap: 0.5rem;
+                        padding: 0 1rem;
+                    }
+                    .poster-item-sticky {
+                        height: 65vh;
+                        border-radius: 0.375rem;
+                    }
+                    .poster-item-sticky:hover {
+                        transform: scale(1.02) translateY(-5px);
+                    }
+                }
+                
+                /* Tablet responsive styles */
+                @media (min-width: 641px) and (max-width: 1024px) {
+                    .poster-track {
+                        gap: 0.75rem;
+                        padding: 0 1.5rem;
+                    }
+                    .poster-item-sticky {
+                        height: 70vh;
+                    }
+                }
+            `}</style>
+            <div className="poster-sticky-inner">
+                <div ref={trackRef} className="poster-track">
+                    {postersData.map((poster) => (
+                        <div
+                            key={poster.id}
+                            className="poster-item-sticky"
+                            onClick={() => setSelectedPoster(poster)}
+                        >
+                            <img src={poster.src} alt={poster.alt} loading="lazy" draggable="false" />
+                        </div>
+                    ))}
+                </div>
             </div>
             {selectedPoster && <ImagePopup poster={selectedPoster} onClose={() => setSelectedPoster(null)} />}
         </section>

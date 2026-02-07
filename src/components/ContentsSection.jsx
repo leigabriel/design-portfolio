@@ -29,21 +29,27 @@ function ContentsSection() {
                     {contentsData.map((item) => (
                         <div
                             key={item.number}
-                            className={'contents-item' + (item.target ? '' : ' opacity-60 cursor-default')}
+                            className={'folder-card' + (item.target ? '' : ' disabled opacity-60')}
                             onClick={() => handleClick(item.target)}
                         >
-                            <div className="contents-item-bg" style={{ backgroundColor: item.color }} />
-                            <span className="contents-item-number">{item.number}</span>
-                            <h3 className="contents-item-title">{item.title}</h3>
-                            <span
-                                className="contents-item-status mt-2 inline-block"
-                                style={{
-                                    color: item.status === 'soon' ? 'rgba(235,235,235,0.4)' : '#ebebeb',
-                                    backgroundColor: item.status === 'soon' ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.1)',
-                                }}
-                            >
-                                {item.status === 'soon' ? 'Coming Soon' : 'View Below ↓'}
-                            </span>
+                            <div className="folder-tab" style={{ backgroundColor: item.color }}>
+                                {item.number}
+                            </div>
+                            <div className="folder-body" style={{ backgroundColor: item.color }}>
+                                <div>
+                                    <span className="folder-number text-black/50">{item.number}</span>
+                                    <h3 className="folder-title text-black">{item.title}</h3>
+                                </div>
+                                <span
+                                    className="folder-status"
+                                    style={{
+                                        color: item.status === 'soon' ? 'rgba(0,0,0,0.4)' : 'rgba(0,0,0,0.8)',
+                                        backgroundColor: item.status === 'soon' ? 'rgba(0,0,0,0.08)' : 'rgba(0,0,0,0.12)',
+                                    }}
+                                >
+                                    {item.status === 'soon' ? 'Coming Soon' : 'View Below ↓'}
+                                </span>
+                            </div>
                         </div>
                     ))}
                 </div>

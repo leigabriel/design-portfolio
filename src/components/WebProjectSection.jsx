@@ -11,6 +11,13 @@ const projectsData = [
     },
     {
         id: 2,
+        src: '/img/web/01-dental.png',
+        alt: 'Dental Booking System',
+        liveUrl: 'https://dentalcare-health.ct.ws/',
+        title: 'Dental Care System'
+    },
+    {
+        id: 3,
         src: '/img/web/02-motivation.png',
         alt: 'Motivation App',
         liveUrl: 'https://motivationperday.netlify.app/',
@@ -18,77 +25,123 @@ const projectsData = [
     }
 ]
 
-function useScrollMaskGrid(containerRef, selector = '.poster-item') {
-    const itemStates = useRef([])
+function useStickyHorizontalScroll(sectionRef, trackRef) {
     const ctx = useSmoothScroll()
+    const currentX = useRef(0)
 
     useEffect(() => {
-        if (!containerRef.current || !ctx) return
-
-        const items = containerRef.current.querySelectorAll(selector)
-        if (!items.length) return
-
-        itemStates.current = Array.from(items).map(() => ({
-            clip: 100,
-            scale: 1.12,
-            opacity: 0,
-        }))
+        if (!sectionRef.current || !trackRef.current || !ctx) return
 
         const lerp = (a, b, t) => a + (b - a) * t
         const clamp = (v, min = 0, max = 1) => Math.min(max, Math.max(min, v))
 
         const unsubscribe = ctx.subscribe(() => {
-            const wh = window.innerHeight
-            items.forEach((item, i) => {
-                const rect = item.getBoundingClientRect()
-                const progress = clamp((wh - rect.top) / (wh + rect.height))
-                const t = clamp((progress - 0.02) / 0.43)
-                const eased = 1 - Math.pow(1 - t, 3)
+            const section = sectionRef.current
+            const track = trackRef.current
+            if (!section || !track) return
 
-                const state = itemStates.current[i]
-                if (!state) return
+            const rect = section.getBoundingClientRect()
+            const sectionHeight = section.offsetHeight
+            const viewportHeight = window.innerHeight
 
-                const targetClip = lerp(100, 0, eased)
-                const targetScale = lerp(1.12, 1, eased)
-                const targetOpacity = lerp(0, 1, eased)
+            // Calculate scroll progress within the sticky section
+            const scrollDistance = sectionHeight - viewportHeight
+            const scrolled = -rect.top
+            const progress = clamp(scrolled / scrollDistance)
 
-                state.clip = lerp(state.clip, targetClip, 0.08)
-                state.scale = lerp(state.scale, targetScale, 0.08)
-                state.opacity = lerp(state.opacity, targetOpacity, 0.08)
+            // Calculate horizontal translation
+            const trackWidth = track.scrollWidth
+            const containerWidth = section.offsetWidth
+            const maxTranslate = trackWidth - containerWidth
+            const targetX = -progress * maxTranslate
 
-                if (Math.abs(state.clip - targetClip) < 0.1) state.clip = targetClip
-                if (Math.abs(state.opacity - targetOpacity) < 0.001) state.opacity = targetOpacity
+            // Smooth interpolation
+            currentX.current = lerp(currentX.current, targetX, 0.08)
+            if (Math.abs(currentX.current - targetX) < 0.5) currentX.current = targetX
 
-                item.style.clipPath = `inset(${state.clip}% 0% 0% 0%)`
-                item.style.transform = `scale(${state.scale}) translateZ(0)`
-                item.style.opacity = state.opacity
-            })
+            track.style.transform = `translateX(${currentX.current}px) translateZ(0)`
         })
 
         return unsubscribe
-    }, [containerRef, ctx, selector])
+    }, [sectionRef, trackRef, ctx])
 }
 
 function WebProjectSection() {
-    const gridRef = useRef(null)
+    const sectionRef = useRef(null)
+    const trackRef = useRef(null)
 
-    useScrollMaskGrid(gridRef)
+    useStickyHorizontalScroll(sectionRef, trackRef)
 
     return (
-        <section id="web-projects" className="folder-section relative overflow-hidden bg-[#f3f706]">
-            <div ref={gridRef} className="grid grid-cols-2 gap-0">
-                {projectsData.map((project) => (
-                    <div
-                        key={project.id}
-                        className="poster-item aspect-[4/5] overflow-hidden cursor-pointer relative group"
-                        style={{ willChange: 'clip-path, transform, opacity' }}
-                        onClick={() => {
-                            if (project.liveUrl) window.open(project.liveUrl, '_blank', 'noopener,noreferrer')
-                        }}
-                    >
-                        <img src={project.src} alt={project.alt} className="w-full h-full object-fill" loading="lazy" draggable="false" />
-                    </div>
-                ))}
+        <section
+            ref={sectionRef}
+            id="web-projects"
+            className="web-sticky-section relative bg-[#f3f706]"
+            style={{ height: '200vh' }}
+        >
+            <style>{`
+                .web-sticky-section {
+                    position: relative;
+                }
+                .web-sticky-inner {
+                    position: sticky;
+                    top: 0;
+                    height: 100vh;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                }
+                .web-track {
+                    display: flex;
+                    gap: 1rem;
+                    padding: 0 2rem;
+                    will-change: transform;
+                }
+                .web-item-sticky {
+                    flex-shrink: 0;
+                    height: 80vh;
+                    aspect-ratio: 4/5;
+                    overflow: hidden;
+                    cursor: pointer;
+                    border-radius: 0.75rem;
+                    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+                }
+                .web-item-sticky:hover {
+                    transform: scale(1.03) translateY(-8px);
+                    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+                }
+                .web-item-sticky img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    pointer-events: none;
+                }
+                @media (max-width: 768px) {
+                    .web-track {
+                        gap: 0.75rem;
+                        padding: 0 1rem;
+                    }
+                    .web-item-sticky {
+                        height: 50vh;
+                        border-radius: 0.5rem;
+                    }
+                }
+            `}</style>
+            <div className="web-sticky-inner">
+                <div ref={trackRef} className="web-track">
+                    {projectsData.map((project) => (
+                        <div
+                            key={project.id}
+                            className="web-item-sticky"
+                            onClick={() => {
+                                if (project.liveUrl) window.open(project.liveUrl, '_blank', 'noopener,noreferrer')
+                            }}
+                        >
+                            <img src={project.src} alt={project.alt} loading="lazy" draggable="false" />
+                        </div>
+                    ))}
+                </div>
             </div>
         </section>
     )

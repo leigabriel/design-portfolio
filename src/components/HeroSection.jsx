@@ -30,28 +30,18 @@ function ImagePopup({ item, onClose }) {
 }
 
 function PortfolioCard({ item, index, onSelect }) {
-    const [hovered, setHovered] = useState(false)
-
     return (
         <div
-            className="portfolio-card relative portfolio-card-size aspect-[99/140] overflow-hidden cursor-pointer hero-card-entrance"
-            style={{
-                transform: hovered
-                    ? 'scale(1.12) rotate(0deg)'
-                    : 'rotate(' + item.rotate + 'deg)',
-                boxShadow: hovered
-                    ? '0 30px 60px rgba(0,0,0,0.7)'
-                    : '0 20px 40px rgba(0,0,0,0.5)',
-                animationDelay: (0.3 + index * 0.08) + 's',
-                '--card-rotate': item.rotate + 'deg',
-                zIndex: hovered ? 50 : 'auto',
-                transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), z-index 0s',
-            }}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-            onClick={() => onSelect(item)}
+            className="hero-card-entrance"
+            style={{ animationDelay: (0.3 + index * 0.08) + 's' }}
         >
-            <img src={item.image} alt={'Project ' + item.id} className="w-full h-full object-fill" loading="lazy" draggable="false" />
+            <div
+                className="portfolio-card relative portfolio-card-size aspect-[99/140] cursor-pointer"
+                style={{ '--card-rotate': item.rotate + 'deg' }}
+                onClick={() => onSelect(item)}
+            >
+                <img src={item.image} alt={'Project ' + item.id} className="hero-card-image w-full h-full object-fill" loading="lazy" draggable="false" />
+            </div>
         </div>
     )
 }
@@ -76,7 +66,7 @@ function HeroSection({ onMenuOpen }) {
                 .hero-title-entrance { animation: heroTitleIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.05s; }
                 @keyframes heroTitleIn { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
                 .hero-card-entrance { animation: heroCardIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
-                @keyframes heroCardIn { from { opacity: 0; transform: translateY(80px) rotate(0deg) scale(0.85); } to { opacity: 1; transform: translateY(0) rotate(var(--card-rotate, 0deg)) scale(1); } }
+                @keyframes heroCardIn { from { opacity: 0; transform: translateY(80px) scale(0.85); } to { opacity: 1; transform: translateY(0) scale(1); } }
             `}</style>
             <header ref={headerDepartureRef} className="absolute top-0 left-0 right-0 flex justify-between items-start z-50" style={{ padding: 'clamp(1rem, 3vw, 2rem) clamp(1rem, 5vw, 5rem)' }}>
                 <h1 className="header-text text-white hero-entrance"></h1>
