@@ -3,12 +3,12 @@ import { createPortal } from 'react-dom'
 import { useHeroDeparture } from '../hooks/useScrollAnimation'
 
 const portfolioItems = [
-    { id: 1, image: '/img/cards/01.png', rotate: -6 },
-    { id: 2, image: '/img/cards/02.png', rotate: -2 },
-    { id: 3, image: '/img/cards/03.png', rotate: 3 },
-    { id: 4, image: '/img/cards/04.png', rotate: -1 },
-    { id: 5, image: '/img/cards/05.png', rotate: 5 },
-    { id: 6, image: '/img/cards/06.png', rotate: 2 }
+    { id: 1, image: '/img/cards/01.webp', rotate: -6 },
+    { id: 2, image: '/img/cards/02.webp', rotate: -2 },
+    { id: 3, image: '/img/cards/03.webp', rotate: 3 },
+    { id: 4, image: '/img/cards/04.webp', rotate: -1 },
+    { id: 5, image: '/img/cards/05.webp', rotate: 5 },
+    { id: 6, image: '/img/cards/06.webp', rotate: 2 }
 ]
 
 function ImagePopup({ item, onClose }) {
@@ -67,12 +67,19 @@ function HeroSection({ onMenuOpen }) {
                 .hero-card-entrance { animation: heroCardIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
                 @keyframes heroCardIn { from { opacity: 0; transform: translateY(80px) scale(0.85); } to { opacity: 1; transform: translateY(0) scale(1); } }
             `}</style>
-            <header ref={headerDepartureRef} className="absolute top-0 left-0 right-0 flex justify-between items-start z-50" style={{ padding: 'clamp(1rem, 3vw, 2rem) clamp(1rem, 5vw, 5rem)' }}>
+            <header ref={headerDepartureRef} className="fixed top-0 left-0 right-0 flex justify-between items-start z-50" style={{ padding: 'clamp(1rem, 3vw, 2rem) clamp(1rem, 5vw, 5rem)' }}>
                 <h1 className="header-text text-white hero-entrance"></h1>
                 <button className="menu-btn hero-entrance hero-entrance-delay-1" onClick={onMenuOpen}>Menu</button>
             </header>
             <div ref={titleDepartureRef} className="absolute inset-0 flex items-center justify-center z-10 translate-y-[-10%]">
-                <h2 className="portfolio-title text-white hero-title-entrance" style={{ willChange: 'transform' }}>LEI GABRIEL</h2>
+                <h2 className="portfolio-title hero-title-entrance" style={{ willChange: 'transform' }}>
+                    <span>L</span>
+                    <span className='text-[#f3f706]'>EI</span>
+                    <span>G</span>
+                    <span className='text-[#004aeb]'>AB</span>
+                    <span>RI</span>
+                    <span className='text-[#f05fc4]'>EL</span>
+                </h2>
             </div>
             <div ref={cardsDepartureRef} className="absolute inset-0 flex items-center justify-center z-20">
                 <div className="flex items-end justify-center card-gap translate-y-[30%]" style={{ perspective: '1000px' }}>

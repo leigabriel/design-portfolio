@@ -1,7 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import { SmoothScrollProvider, useSmoothScroll } from './context/SmoothScrollContext'
 import { useSecurityProtection } from './hooks/useSecurityProtection'
-// import LoadingScreen from './components/LoadingScreen'
 import NavigationSidebar, { useNavigation } from './components/NavigationSidebar'
 import HeroSection from './components/HeroSection'
 import AboutSection from './components/AboutSection'

@@ -20,11 +20,11 @@ function AboutSection() {
             <div className="section-padding flex flex-col justify-between min-h-screen">
                 <h2 ref={titleRef} className="section-title text-black">[.ABOUT ME]</h2>
                 <p ref={introRef} className="intro-text mb-6 md:mb-10 text-black/90">
-                    I'M A <span className="text-[#E8C547]">GRAPHIC DESIGNER AND WEB DEVELOPER</span> WHO COMBINES CREATIVITY AND TECHNOLOGY TO CREATE CLEAN, MODERN, AND FUNCTIONAL DIGITAL EXPERIENCES. I FOCUS ON CRAFTING <span className="text-[#7FB3D5]">MY OWN DESIGNS</span> THAT ARE VISUALLY APPEALING AND EASY TO NAVIGATE. MY GOAL IS TO BUILD DIGITAL PRODUCTS THAT NOT ONLY LOOK GOOD BUT ALSO DELIVER A <span className="text-[#F5A6A6]">SMOOTH AND MEANINGFUL EXPERIENCE</span> FOR PEOPLE.
+                    I'M A <span className="text-[#f3f706]">GRAPHIC DESIGNER AND WEB DEVELOPER</span> WHO COMBINES CREATIVITY AND TECHNOLOGY TO CREATE CLEAN, MODERN, AND FUNCTIONAL DIGITAL EXPERIENCES. I FOCUS ON CRAFTING <span className="text-[#004aeb]">MY OWN DESIGNS</span> THAT ARE VISUALLY APPEALING AND EASY TO NAVIGATE. MY GOAL IS TO BUILD DIGITAL PRODUCTS THAT NOT ONLY LOOK GOOD BUT ALSO DELIVER A <span className="text-[#f05fc4]">SMOOTH AND MEANINGFUL EXPERIENCE</span> FOR PEOPLE.
                 </p>
                 <div ref={imageContainerRef} className="flex items-center justify-center mb-6 md:mb-10">
                     <div className="relative flex items-center">
-                        <div className="rotating-star text-pink-600" style={{ transform: 'rotate(' + rotation + 'deg)' }}>*</div>
+                        <div className="rotating-star text-[#f05fc4]" style={{ transform: 'rotate(' + rotation + 'deg)' }}>*</div>
                         <div className="relative avatar-size overflow-hidden group">
                             <img src="https://avatars.githubusercontent.com/u/223958636?v=4" alt="Lei Gabriel" className="w-full h-full object-cover" draggable="false" />
                         </div>
